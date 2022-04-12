@@ -16,10 +16,13 @@
 - token 단위로 라벨링
   - **2022-04-12** Train (5,442) / Test (1,361) 
 
-## Usage
+## History
 
 - main.py, data_loader.py: token 단위로 라벨링한 파일을 읽어들이도록 수정
 - predict.py: token 단위로 predict한 결과 출력하도록 수정
+
+
+## Usage
 
 ```bash
 $ python3 main.py --data_dir ./res --model_type koelectra-base --do_train --do_eval --train_batch_size 64 --eval_batch_size 64 --logging_steps 71 --save_steps 15 --num_train_epochs 15
