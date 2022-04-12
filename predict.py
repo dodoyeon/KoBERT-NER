@@ -68,6 +68,8 @@ def convert_input_file_to_tensor_dataset(lines,
     all_token_type_ids = []
     all_slot_label_mask = []
 
+    all_input_tokens = []
+
     for words in lines:
         tokens = []
         slot_label_mask = []
@@ -76,8 +78,14 @@ def convert_input_file_to_tensor_dataset(lines,
             if not word_tokens:
                 word_tokens = [unk_token]  # For handling the bad-encoded word
             tokens.extend(word_tokens)
+            
             # Use the real label id for the first token of the word, and padding ids for the remaining tokens
-            slot_label_mask.extend([0] + [pad_token_label_id] * (len(word_tokens) - 1))
+            # slot_label_mask.extend([0] + [pad_token_label_id] * (len(word_tokens) - 1))
+            
+            # use the real label id for all tokens of the word
+            slot_label_mask.extend([0] * (len(word_tokens)))
+
+        all_input_tokens.append(tokens)
 
         # Account for [CLS] and [SEP]
         special_tokens_count = 2
@@ -102,7 +110,9 @@ def convert_input_file_to_tensor_dataset(lines,
 
         # Zero-pad up to the sequence length.
         padding_length = args.max_seq_len - len(input_ids)
+
         input_ids = input_ids + ([pad_token_id] * padding_length)
+
         attention_mask = attention_mask + ([0 if mask_padding_with_zero else 1] * padding_length)
         token_type_ids = token_type_ids + ([pad_token_segment_id] * padding_length)
         slot_label_mask = slot_label_mask + ([pad_token_label_id] * padding_length)
@@ -118,15 +128,17 @@ def convert_input_file_to_tensor_dataset(lines,
     all_token_type_ids = torch.tensor(all_token_type_ids, dtype=torch.long)
     all_slot_label_mask = torch.tensor(all_slot_label_mask, dtype=torch.long)
 
+
     dataset = TensorDataset(all_input_ids, all_attention_mask, all_token_type_ids, all_slot_label_mask)
 
-    return dataset
+    return dataset, all_input_tokens
 
 
 def predict(pred_config):
     # load model and args
     args = get_args(pred_config)
     device = get_device(pred_config)
+
     model = load_model(pred_config, args, device)
     label_lst = get_labels(args)
     logger.info(args)
@@ -135,7 +147,7 @@ def predict(pred_config):
     pad_token_label_id = torch.nn.CrossEntropyLoss().ignore_index
     tokenizer = load_tokenizer(args)
     lines = read_input_file(pred_config)
-    dataset = convert_input_file_to_tensor_dataset(lines, pred_config, args, tokenizer, pad_token_label_id)
+    dataset, all_input_tokens = convert_input_file_to_tensor_dataset(lines, pred_config, args, tokenizer, pad_token_label_id)
 
     # Predict
     sampler = SequentialSampler(dataset)
@@ -163,17 +175,19 @@ def predict(pred_config):
                 all_slot_label_mask = np.append(all_slot_label_mask, batch[3].detach().cpu().numpy(), axis=0)
 
     preds = np.argmax(preds, axis=2)
+
     slot_label_map = {i: label for i, label in enumerate(label_lst)}
-    preds_list = [[] for _ in range(preds.shape[0])]
+    preds_list = [[] for _ in range(preds.shape[0])] # [[]*batch 수] 
 
     for i in range(preds.shape[0]):
         for j in range(preds.shape[1]):
             if all_slot_label_mask[i, j] != pad_token_label_id:
                 preds_list[i].append(slot_label_map[preds[i][j]])
 
+    ################# per token
     # Write to output file
     with open(pred_config.output_file, "w", encoding="utf-8") as f:
-        for words, preds in zip(lines, preds_list):
+        for words, preds in zip(all_input_tokens, preds_list):
             line = ""
             for word, pred in zip(words, preds):
                 if pred == 'O':
