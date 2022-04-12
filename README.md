@@ -12,6 +12,7 @@
 ## Dataset
 
 - **AI Hub**의 민원(콜센터) 질의-응답 Dataset 사용 ([link](https://aihub.or.kr/aidata/30716))
+- **국립국어원 모두의 말뭉치**의 개체명 분석 말뭉치 사용 ([link](https://corpus.korean.go.kr/main.do))
 - 이미 비식별화 처리된 부분은 임의로 데이터 생성하여 채워 넣었음
 - token 단위로 라벨링
   - **2022-04-12** Train (5,442) / Test (1,361) 
