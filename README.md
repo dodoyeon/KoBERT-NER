@@ -1,7 +1,7 @@
 # KoBERT-NER
 
 - forked from monologg/KoBERT-NER
-- pii detection using NER
+- pii detection using NER with KoELECTRA
 
 ## Dependencies
 
