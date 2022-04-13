@@ -126,7 +126,11 @@ venv.bak/
 ####################
 .vscode/
 .idea/
+
+#### model directory
 model/
+test/
+
 
 .DS_Store
 
