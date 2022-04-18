@@ -573,7 +573,7 @@
 [CLS] 01 ##6 - 137 ##9 - 65 ##88 ##입니다 . [SEP]	-100 ID_PHONE-B ID_PHONE-I ID_PHONE-I ID_PHONE-I ID_PHONE-I ID_PHONE-I ID_PHONE-I ID_PHONE-I O O -100
 [CLS] 우리 ##은행 ##금융 ##지 ##원 ##센터 ##가 경남은행 인가요 ? [SEP]	-100 SS_BRAND-B SS_BRAND-I O O O O O SS_BRAND-B O O -100
 [CLS] 광주 ##은행 ##금융 ##지 ##원 ##센터 ##요 ? [SEP]	-100 SS_BRAND-B SS_BRAND-I O O O O O O -100
-[CLS] 네 대출 ##안 ##내 문자 ##가 왔 ##는데 중소기업 ##은행 ##금융 ##지 ##원 ##센터 ##라고 해서 ##요 . [SEP]	-100 O O O O O O O O SS_BRAND-B SS_BRAND-I O O O O O O O O -100 //////////////
+[CLS] 네 대출 ##안 ##내 문자 ##가 왔 ##는데 중소기업 ##은행 ##금융 ##지 ##원 ##센터 ##라고 해서 ##요 . [SEP]	-100 O O O O O O O O SS_BRAND-B SS_BRAND-I O O O O O O O O -100
 [CLS] 네 고객 ##님 전북 ##은행 ##금융 ##지 ##원 ##센터 ##는 한국 ##산업 ##은행 ##이 아닙니다 . [SEP]	-100 O O O SS_BRAND-B SS_BRAND-I O O O O O SS_BRAND-B SS_BRAND-I SS_BRAND-I O O O -100
 [CLS] 카카오 ##뱅 ##크 아닌가요 ? [SEP]	-100 SS_BRAND-B SS_BRAND-I SS_BRAND-I O O -100
 [CLS] 네 가입자 ##분 성 ##함 ##이 ##랑 생년 ##월일 . [SEP]	-100 O O O O O O O O O O -100
