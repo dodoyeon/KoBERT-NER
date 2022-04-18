@@ -82,7 +82,7 @@ def convert_input_file_to_tensor_dataset(lines,
             slot_label_mask.extend([0] * (len(word_tokens)))
 
 
-        all_input_tokens.append(tokens) # 뭐지? 여기서는 뒤에 sep 안 붙는데 이 이후부터 계속 붙네?
+        all_input_tokens.append(tokens)
 
         # Account for [CLS] and [SEP]
         special_tokens_count = 2
