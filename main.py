@@ -19,7 +19,7 @@ def main(args):
     dev_dataset = None
     test_dataset = None
  
-    if args.do_train or args.do_eval:
+    if args.do_eval:
         test_dataset = load_and_cache_examples(args, tokenizer, mode="test")
     if args.do_train:
         train_dataset = load_and_cache_examples(args, tokenizer, mode="train")
