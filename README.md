@@ -26,10 +26,11 @@
 ## Usage
 
 ```bash
-$ python3 main.py --data_dir ./res --model_type koelectra-base --do_train --do_eval --train_batch_size 64 --eval_batch_size 64 --logging_steps 71 --save_steps 15 --num_train_epochs 15
+$ python3 main.py --data_dir ./res --model_type koelectra-base --do_train --train_batch_size 64 --eval_batch_size 64 --logging_steps 71 --save_steps 15 --num_train_epochs 15
 ```
-
+- `--do_eval` 옵션을 명시하면 true로, 주지 않으면 false로 들어갑니다.
 - `--write_pred` 옵션을 주면 **evaluation의 prediction 결과**가 `preds` 폴더에 저장됩니다.
+
 
 ## Prediction
 
