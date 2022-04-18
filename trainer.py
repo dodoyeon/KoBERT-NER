@@ -45,6 +45,8 @@ class Trainer(object):
             if os.path.exists(args.pred_dir):
                 shutil.rmtree(args.pred_dir)
 
+        self.do_eval = args.do_eval
+
     def train(self):
         train_sampler = RandomSampler(self.train_dataset)
         train_dataloader = DataLoader(self.train_dataset, sampler=train_sampler, batch_size=self.args.train_batch_size)
@@ -108,8 +110,9 @@ class Trainer(object):
                     self.model.zero_grad()
                     global_step += 1
 
-                    if self.args.logging_steps > 0 and global_step % self.args.logging_steps == 0:
-                        self.evaluate("test", global_step)
+                    if self.do_eval:
+                      if self.args.logging_steps > 0 and global_step % self.args.logging_steps == 0:
+                          self.evaluate("test", global_step)
 
                     if self.args.save_steps > 0 and global_step % self.args.save_steps == 0:
                         self.save_model()
