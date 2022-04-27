@@ -2076,7 +2076,7 @@
 [CLS] 다음 ##으로 ##는 잘 못 이체 하신 계좌 ##번 ##호 ##가 어떻게 되 ##어 있 ##는지 말씀 ##해 주실 수 있 ##으 ##십니까 ? [SEP]	-100 O O O O O O O O O O O O O O O O O O O O O O O O -100
 [CLS] 잠시 ##만 ##요 다시 찾아볼 ##께요 . [SEP]	-100 O O O O O O O -100
 [CLS] 찾 ##았 ##습 ##니다 . [SEP]	-100 O O O O O -100
-[CLS] 83 ##1 ##입니다 . [SEP]	-100 O O O O -100
+[CLS] 83 ##1 ##입니다 . [SEP]	-100 ID_ACCOUNT-B ID_ACCOUNT-I O O -100
 [CLS] 다음 , 상대방 계좌 ##의 계좌 ##번 ##호 ##가 어떻게 되 ##는지 말씀 ##해 주실 수 있 ##으 ##신 ##지 ##요 ? [SEP]	-100 O O O O O O O O O O O O O O O O O O O O O O -100
 [CLS] 준비 ##하 ##고 있 ##었 ##습 ##니다 . [SEP]	-100 O O O O O O O O -100
 [CLS] 47 ##37 ##78 ##번 입니다 . [SEP]	-100 ID_ACCOUNT-B ID_ACCOUNT-I ID_ACCOUNT-I O O O -100
@@ -3644,22 +3644,22 @@
 [CLS] 지금 ##은 56 ##키 ##로이 ##니 안정 ##권 ##일 것 같 ##아 ##요 . [SEP]	-100 O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O -100
 [CLS] 산양 ##분 ##유 먹 ##고 큰 16 ##개 ##월 ##아 ##기 몸무게 11 ##키 ##로 훌쩍 넘 ##고 잘 크 ##고 있 ##답니다 ~ [SEP]	-100 O O O O O O SS_AGE-B SS_AGE-I SS_AGE-I O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O -100
 [CLS] 몸무게 ##는 결국 86 ##k ##g ##대로 진입 ##은 못하 ##고 88 ##에 ##서 멈췄 ##다 . [SEP]	-100 O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O -100
-[CLS] 그래도 90 ##k ##g ##가 아닌 ##게 천만 ##다 ##행 [SEP]	-100 O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O -100
+[CLS] 그래도 90 ##k ##g ##가 아닌 ##게 천만 ##다 ##행 [SEP]	-100 O O O O O O O O O O -100
 [CLS] 체중 : 44 . 75 ##k ##g ( - 3 . 65 ##k ##g 달성 ) [SEP]	-100 O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O -100
 [CLS] 체중 : 86 ##k ##g ( - 6 . 4 ##k ##g ) [SEP]	-100 O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O -100
-[CLS] 골격 ##근 : 20 kg [SEP]	-100 O O O O O -100
-[CLS] 체지방 : 8 . 7 kg [SEP]	-100 O O O O O O -100
-[CLS] 체지방 ##량 ##이 16 . 65 ##k ##g ##면 생각 ##보 ##다 높 ##네 ##요 . [SEP]	-100 O O O O O O O O O O O O O O O O -100
-[CLS] 오 ##잉 ? 120 ##k ##g ##로 내려갈 ##줄 알 ##았 ##는데 [SEP]	-100 O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O -100
+[CLS] 골격 ##근 : 20 kg [SEP]	-100 O O O SS_WEIGHT-B SS_WEIGHT-I -100
+[CLS] 체지방 : 8 . 7 kg [SEP]	-100 O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I -100
+[CLS] 체지방 ##량 ##이 16 . 65 ##k ##g ##면 생각 ##보 ##다 높 ##네 ##요 . [SEP]	-100 O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O -100
+[CLS] 오 ##잉 ? 120 ##k ##g ##로 내려갈 ##줄 알 ##았 ##는데 [SEP]	-100 O O O O O O O O O O O O -100
 [CLS] 옷 무게 빼 ##면 7 . 4 ##k ##g 될 ##듯 ##합니다 . [SEP]	-100 O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O -100
 [CLS] 오늘 ##의 몸무게 ##는 옷 ##을 입 ##고 7 . 7 ##k ##g ##이 나왔 ##네 ##요 . [SEP]	-100 O O O O O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O -100
-[CLS] 골격 ##근 ##이 26 ##k ##g ##면 높 ##은 ##편 ##이 ##네 ##요 [SEP]	-100 O O O O O O O O O O O O O -100
+[CLS] 골격 ##근 ##이 26 ##k ##g ##면 높 ##은 ##편 ##이 ##네 ##요 [SEP]	-100 O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O -100
 [CLS] 몸무게 5 . 9 ##키 ##로그램 [SEP]	-100 O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I -100
 [CLS] 생후 ##13 ##0 ##일 몸무게 7 . 2 ##키 ##로 [SEP]	-100 SS_AGE-B SS_AGE-I SS_AGE-I SS_AGE-I O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I -100
-[CLS] 체지방 ##이 14 . 15 ##k ##g ##이 ##니까 3 ##k ##g ##만 [UNK] . [SEP]	-100 O O O O O O O O O O O O O O O -100
-[CLS] 골격 ##근 ##이 20 ##k ##g ##이 ##니 근육 ##량 ##만 늘려 ##보 ##죠 . [SEP]	-100 O O O O O O O O O O O O O O O -100
+[CLS] 체지방 ##이 14 . 15 ##k ##g ##이 ##니까 3 ##k ##g ##만 [UNK] . [SEP]	-100 O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O -100
+[CLS] 골격 ##근 ##이 20 ##k ##g ##이 ##니 근육 ##량 ##만 늘려 ##보 ##죠 . [SEP]	-100 O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O -100
 [CLS] 52 ##k ##g ##로 시작 ##한 나의 몸무게 ##는 입 ##덧 일주일 ##만 ##에 49 ##k ##g ##가 되 ##었 ##다 . [SEP]	-100 SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O -100
-[CLS] 지방 ##이 15 ##K ##G ##이 ##니 조금 ##만 줄여 ##보 ##도록 하 ##죠 . [SEP]	-100 O O O O SS_WEIGHT-I O O O O O O O O O O -100
+[CLS] 지방 ##이 15 ##K ##G ##이 ##니 조금 ##만 줄여 ##보 ##도록 하 ##죠 . [SEP]	-100 O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O -100
 [CLS] 4 . 5 ##키 ##로 ##가 넘 ##는 아이 ##인 ##데 2 ##년 ##간 말라 ##서 3 . 6 ##키 ##로 ##가 되 ##었 ##다 . [SEP]	-100 SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O -100
 [CLS] 단지 ##는 21 ##개 ##월 ##이 ##고 몸무게 ##는 10 ##킬 ##로 ##라 ##서 M ##사이 ##즈 ##를 주문 ##했 ##어요 ~ [SEP]	-100 SS_NAME-B O SS_AGE-B SS_AGE-I SS_AGE-I O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O -100
 [CLS] M ##사이 ##즈 ##는 8 ~ 13 ##k ##g ##이 권장 몸무게 ##이 ##니까 참고 ##하 ##세요 ! [SEP]	-100 O O O O O O O O O O O O O O O O O O -100
@@ -3671,8 +3671,8 @@
 [CLS] 이래 ##뵈 ##도 7 . 6 ##키 ##로 ##의 체구 ##를 자랑 ##하 ##는 가 ##카 . . [SEP]	-100 O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O O SS_NAME-B SS_NAME-I O O -100
 [CLS] 154 / 88 인데 [SEP]	-100 SS_LENGTH-B O SS_WEIGHT-B O -100
 [CLS] 전 현역 ##때 ##보 ##다 늘어 ##서 현재 87 ##k ##g 더 찜 . . [SEP]	-100 O O O O O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O -100
-[CLS] 몸무게 90 kg ( 89 . 9 ##가 보건소 측정 , 오차 고려 ) [SEP]	-100 O SS_WEIGHT-B SS_WEIGHT-I O SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O O O -100
-[CLS] 골격 ##근 42 kg ( 인 ##바 ##디 오차 고려 이 범위 추정 ) [SEP]	-100 O O O O O O O O O O O O O O -100
+[CLS] 몸무게 90 kg ( 89 . 9 ##가 보건소 측정 , 오차 고려 ) [SEP]	-100 O SS_WEIGHT-B SS_WEIGHT-I O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O -100
+[CLS] 골격 ##근 42 kg ( 인 ##바 ##디 오차 고려 이 범위 추정 ) [SEP]	-100 O O SS_WEIGHT-B SS_WEIGHT-I O O O O O O O O O O -100
 [CLS] 키 181 . 1 cm ( 병원 , 보건소 측정 기준 ) [SEP]	-100 O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I O O O O O O O -100
 [CLS] 김진 ##수 ( 178 / 60 ) [SEP]	-100 SS_NAME-B SS_NAME-I O SS_LENGTH-B O SS_WEIGHT-B O -100
 [CLS] 183 / 82 [SEP]	-100 SS_LENGTH-B O SS_WEIGHT-B -100
@@ -3686,7 +3686,7 @@
 [CLS] 중량 45 ##키 ##로 하 ##는데 178 / 55 ##인 ##데 많이 드 ##는 ##건 ##가요 ? . ㅈ . [SEP]	-100 O O O O O O SS_LENGTH-B O SS_WEIGHT-B O O O O O O O O O O O -100
 [CLS] 몸무게 79 ##에 무게 60 ##입니다 [SEP]	-100 O SS_WEIGHT-B O O O O -100
 [CLS] 한 165 / 45 ? [SEP]	-100 O SS_LENGTH-B O SS_WEIGHT-B O -100
-[CLS] 임 ##호우 키 179 골격 ##근 ##량 33 . 6 입니다 ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ [SEP]	-100 SS_NAME-B SS_NAME-I O SS_LENGTH-B O O O O O O O O O O O O O O -100
+[CLS] 임 ##호우 키 179 골격 ##근 ##량 33 . 6 입니다 ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ [SEP]	-100 SS_NAME-B SS_NAME-I O SS_LENGTH-B O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O -100
 [CLS] 몸무게 ##는 묻 ##지마 ##세요 [SEP]	-100 O O O O O -100
 [CLS] 돼지 ##니 ##깐 ##ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋ 깐 ##족 ##깐 ##족 [SEP]	-100 O O O O O O O O O O O O O -100
 [CLS] 작년 ##만 ##해 ##도 68 ##K ##G 언저리 ##였 ##는데 갑자기 최고 ##몸 ##무게 72 ##찍 ##어버 ##림 … [SEP]	-100 O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O SS_WEIGHT-B O O O O -100
@@ -4243,9 +4243,9 @@
 [CLS] 키 ##가 164 ##c ##m ##인 것 ##을 고려 ##하면 아주 적 ##은 몸무게 ##라 할 수 있 ##다 . [SEP]	-100 O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O O O O O O O O O O O -100
 [CLS] 현아 ##의 몸무게 ##는 41 . 3 ##k ##g ##으로 지난 3 ##월 공개 ##한 44 . 1 ##k ##g ##에 ##서 2 . 8 ##k ##g ##이나 빠져 있 ##었 ##다 . [SEP]	-100 SS_NAME-B O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O O O O -100
 [CLS] 키 ##가 162 ##c ##m ##라는 조 ##유리 , 당당히 ' 몸무게 ' 깠 ##다 [SEP]	-100 O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O SS_NAME-B SS_NAME-I O O O O O O O -100
-[CLS] 인 ##바 ##디 검사 결과 ##에 따르 ##면 소유 ##의 체중 ##은 62 . 4 ##k ##g . 체지방 ##량 ##은 19 . 1 ##k ##g ##으로 표준 이상 ##이 ##고 . 골격 ##근 ##량 ##은 23 . 6 ##k ##g ##으로 표준 수치 ##였 ##다 . [SEP]	-100 O O O O O O O O SS_NAME-B O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O -100
-[CLS] 저 몸무게 60 ##k ##g 중 ##에 ##서 25 ##k ##g ##가 근육 ##이다 [SEP]	-100 O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O -100
-[CLS] 김성 ##은 ##은 키 171 ##c ##m ##에 몸무게 49 . 1 ##k ##g , 체지방 6 . 4 ##k ##g . [SEP]	-100 SS_NAME-B SS_NAME-I O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O -100
+[CLS] 인 ##바 ##디 검사 결과 ##에 따르 ##면 소유 ##의 체중 ##은 62 . 4 ##k ##g . 체지방 ##량 ##은 19 . 1 ##k ##g ##으로 표준 이상 ##이 ##고 . 골격 ##근 ##량 ##은 23 . 6 ##k ##g ##으로 표준 수치 ##였 ##다 . [SEP]	-100 O O O O O O O O SS_NAME-B O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O O -100
+[CLS] 저 몸무게 60 ##k ##g 중 ##에 ##서 25 ##k ##g ##가 근육 ##이다 [SEP]	-100 O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O -100
+[CLS] 김성 ##은 ##은 키 171 ##c ##m ##에 몸무게 49 . 1 ##k ##g , 체지방 6 . 4 ##k ##g . [SEP]	-100 SS_NAME-B SS_NAME-I O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O -100
 [CLS] 정호 ##연 ##의 프로필 ##에 따르 ##면 179 ##c ##m 신장 ##에 몸무게 ##가 49 ##k ##g ##밖 ##에 되 ##지 않 ##을 정도 ##로 매우 야 ##위 ##었 ##다 . [SEP]	-100 SS_NAME-B SS_NAME-I O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O O O O O -100
 [CLS] 국내 공식 프로필 ##에 따르 ##면 그 ##의 신장 ##은 179 ##c ##m ##가 아닌 176 ##c ##m [SEP]	-100 O O O O O O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I -100
 [CLS] 유이 ##는 현재 49 . 8 ##k ##g ##이다 . [SEP]	-100 SS_NAME-B O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O -100
@@ -4265,8 +4265,8 @@
 [CLS] 155 ##c ##m / 49 ##k ##g 적혀 ##있 ##는데 [SEP]	-100 SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O -100
 [CLS] 나 집 ##에 ##서 재 ##니까 76 ##k ##g ##나 ##오 ##는데 ? . . [SEP]	-100 O O O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O -100
 [CLS] 주말 ##지 ##나 ##고 58 ##k ##g ##으로 돌아가 ##면 안 ##되 ##니까 그러 ##는 ##거 ##다 [SEP]	-100 O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O -100
-[CLS] 체중 46 . 7 ##k ##g - > 47 . 3 ##k ##g ( + 0 . 6 ##k ##g ) 골격 ##근 ##량 18 . 9 ##k ##g - > 19 . 5 ##k ##g ( + 0 . 6 ##k ##g ) 체지방 ##률 23 . [SEP]	-100 O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O -100
-[CLS] 아 , 나 살 ##빠 ##짐 서진 ##쑤 [SEP]	-100 O O O O O O SS_NAME-B O -100
+[CLS] 체중 46 . 7 ##k ##g - > 47 . 3 ##k ##g ( + 0 . 6 ##k ##g ) 골격 ##근 ##량 18 . 9 ##k ##g - > 19 . 5 ##k ##g ( + 0 . 6 ##k ##g ) 체지방 ##률 23 . [SEP]	-100 O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O SS_WEIGHT-B O -100
+[CLS] 아 , 나 살 ##빠 ##짐 서진 ##쑤 [SEP]	-100 O O O O O O SS_NAME-B SS_NAME-I -100
 [CLS] 지금 46 ##k ##g ##이 ##야 [SEP]	-100 O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O -100
 [CLS] 나 3 ##k ##g ##로 빠졌 ##어 70 ##이 ##야 [SEP]	-100 O O O O O O O SS_WEIGHT-B O O -100
 [CLS] 원래 58 ##k ##g ##이 ##었 ##대 [SEP]	-100 O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O -100
@@ -4351,7 +4351,7 @@
 [CLS] 사무실 ##은 남구 대연 ##동 176 ##3 - 13 ##번 ##지 ( 새 ##주 ##소 ##는 수영 ##로 29 ##1 ) 3 ##층 건물 중 2 ##층 입니다 . [SEP]	-100 O O AD_CITY-B AD_ADDRESS-B AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I O O O O O AD_ADDRESS-B AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I O AD_DETAIL-B AD_DETAIL-I AD_DETAIL-I O AD_DETAIL-I AD_DETAIL-I O O -100
 [CLS] 남구 대연 ##1 ##동 87 ##9 - 8 ##번 ##지 은 ##성 ##회 ##초 ##밥 ##집 ##을 소개 ##합니다 . [SEP]	-100 AD_CITY-B AD_ADDRESS-B AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_BRAND-B AD_BRAND-I AD_BRAND-I AD_BRAND-I AD_BRAND-I AD_BRAND-I O O O O -100
 [CLS] 채 ##루 ##비 ##가 준비 ##한 건 여기 ##까 ##지 제 ##가 갔 ##던 믹 ##시마 ##이 주소 남기 ##며 물러날 ##게요 서울 ##특별 ##시 강남구 압구정 ##로 12 ##길 22 [SEP]	-100 SS_NAME-B SS_NAME-I SS_NAME-I O O O O O O O O O O O SS_BRAND-B SS_BRAND-I SS_BRAND-I O O O O O AD_METRO-B AD_METRO-I AD_METRO-I AD_CITY-B AD_ADDRESS-B AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I -100
-[CLS] 여 ##잔 ##데 키 ##도 크 ##고 ( 179 ##센 ##티 ) 골격 ##근 ##량 ##도 ( 33 ##키 ##로 ) [SEP]	-100 O O O O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O O O O O O -100
+[CLS] 여 ##잔 ##데 키 ##도 크 ##고 ( 179 ##센 ##티 ) 골격 ##근 ##량 ##도 ( 33 ##키 ##로 ) [SEP]	-100 O O O O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O -100
 [CLS] 이어 169 . 2 ##c ##m ##의 큰 키를 자랑 , 자연 ##스러운 포즈 ##를 취하 ##고 있 ##는 모습 ##은 일상 ##도 화보 ##로 만들 ##었 ##다 . [SEP]	-100 O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I O O O O O O O O O O O O O O O O O O O O O O O -100
 [CLS] 송 ##경 ##아 ##는 “ 179 . 2 ##c ##m ##다 ” 라고 대답 ##했 ##다 . [SEP]	-100 SS_NAME-B SS_NAME-I SS_NAME-I O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I O O O O O O O -100
 [CLS] 한편 최선 ##정 ##은 최근 자신 ##의 인스 ##타 ##그램 ##을 통해 키는 167 . 7 ##c ##m , 몸무게 ##는 48 . 3 ##k ##g ##이 ##라고 밝혔 ##다 . [SEP]	-100 O SS_NAME-B SS_NAME-I O O O O O O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O O O O -100
