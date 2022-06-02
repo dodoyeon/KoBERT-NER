@@ -18,7 +18,12 @@ def get_device(pred_config):
 
 
 def get_args(pred_config):
-    return torch.load(os.path.join(pred_config.model_dir, 'training_args.bin'))
+    training_params = torch.load(os.path.join(pred_config.model_dir, 'training_params.bin'))
+
+    args = training_params['training_args']
+    label_lst = training_params['label_lst']
+
+    return args, label_lst
 
 
 def load_model(pred_config, args, device):
@@ -27,7 +32,7 @@ def load_model(pred_config, args, device):
         raise Exception("Model doesn't exists! Train first!")
 
     try:
-        model = AutoModelForTokenClassification.from_pretrained(args.model_dir)  # Config will be automatically loaded from model_dir
+        model = AutoModelForTokenClassification.from_pretrained(pred_config.model_dir)  # Config will be automatically loaded from model_dir
         model.to(device)
         model.eval()
         logger.info("***** Model Loaded *****")
@@ -133,16 +138,16 @@ def convert_input_file_to_tensor_dataset(lines,
 
 def predict(pred_config):
     # load model and args
-    args = get_args(pred_config)
+    args, label_lst = get_args(pred_config)
     device = get_device(pred_config)
 
     model = load_model(pred_config, args, device)
-    label_lst = get_labels(args)
     logger.info(args)
 
     # Convert input file to TensorDataset
     pad_token_label_id = torch.nn.CrossEntropyLoss().ignore_index
     tokenizer = load_tokenizer(args)
+
     lines = read_input_file(pred_config)
     dataset, all_input_tokens = convert_input_file_to_tensor_dataset(lines, pred_config, args, tokenizer, pad_token_label_id)
 
@@ -180,8 +185,25 @@ def predict(pred_config):
         for j in range(preds.shape[1]):
             if all_slot_label_mask[i, j] != pad_token_label_id:
                 preds_list[i].append(slot_label_map[preds[i][j]])
-                
-    with open(pred_config.output_file, "w", encoding="utf-8") as f:
+
+    
+    # Save output file in ./model/{model_dir}
+    model_dir = pred_config.model_dir.split(os.sep)[-1]
+    input_fn = pred_config.input_file.split(os.sep)[-1]
+    output_dir = os.path.join('./pred_out', model_dir)
+    
+    if not os.path.exists(output_dir):
+      os.makedirs(output_dir)
+
+    output_fn = pred_config.output_file
+
+    if output_fn is None:
+      output_fn = input_fn
+      output_path = os.path.join(output_dir, output_fn)
+    else:
+      output_path = output_fn
+
+    with open(output_path, "w", encoding="utf-8") as f:
         for words, preds in zip(all_input_tokens, preds_list):
             line = ""
             for word, pred in zip(words, preds):
@@ -199,8 +221,8 @@ if __name__ == "__main__":
     init_logger()
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--input_file", default="sample_pred_in.txt", type=str, help="Input file for prediction")
-    parser.add_argument("--output_file", default="sample_pred_out.txt", type=str, help="Output file for prediction")
+    parser.add_argument("--input_file", default=None, type=str, required=True, help="Input file for prediction")
+    parser.add_argument("--output_file", default=None, type=str, help="Output file for prediction")
     parser.add_argument("--model_dir", default="./model", type=str, help="Path to save, load model")
 
     parser.add_argument("--batch_size", default=32, type=int, help="Batch size for prediction")

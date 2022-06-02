@@ -16,6 +16,9 @@ logger = logging.getLogger(__name__)
 class Trainer(object):
     def __init__(self, args, train_dataset=None, dev_dataset=None, test_dataset=None):
         self.args = args
+
+
+
         self.train_dataset = train_dataset
         self.dev_dataset = dev_dataset
         self.test_dataset = test_dataset
@@ -215,8 +218,12 @@ class Trainer(object):
         model_to_save = self.model.module if hasattr(self.model, 'module') else self.model
         model_to_save.save_pretrained(self.args.model_dir)
 
-        # Save training arguments together with the trained model
-        torch.save(self.args, os.path.join(self.args.model_dir, 'training_args.bin'))
+        # Save training arguments and label list together with trained model
+        param_dict = {'training_args': self.args,
+                      'label_lst': self.label_lst}
+
+        torch.save(param_dict, os.path.join(self.args.model_dir, 'training_params.bin'))
+
         logger.info("Saving model checkpoint to %s", self.args.model_dir)
 
     def load_model(self):
