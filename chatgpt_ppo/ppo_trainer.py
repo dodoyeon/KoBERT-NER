@@ -1,47 +1,17 @@
-class PolicyLoss(nn.Module):
-    """
-    Policy Loss for PPO
-    """
+from typing import Any, Callable, Dict, List, Optional
 
-    def __init__(self, clip_eps: float = 0.2) -> None:
-        super().__init__()
-        self.clip_eps = clip_eps
+import torch.nn as nn
+from chatgpt_ppo.naive_em import Experience, NaiveExperienceMaker
+# from chatgpt_ppo.models.base import Actor, Critic
+from chatgpt_ppo.utils import update_model_kwargs_fn
+from chatgpt_ppo.loss import PolicyLoss, ValueLoss
+from chatgpt_ppo.naive_rb import NaiveReplayBuffer
+from torch.optim import Optimizer
 
-    def forward(self,
-                log_probs: torch.Tensor,
-                old_log_probs: torch.Tensor,
-                advantages: torch.Tensor,
-                action_mask: Optional[torch.Tensor] = None) -> torch.Tensor:
-        ratio = (log_probs - old_log_probs).exp()
-        surr1 = ratio * advantages
-        surr2 = ratio.clamp(1 - self.clip_eps, 1 + self.clip_eps) * advantages
-        loss = -torch.min(surr1, surr2)
-        if action_mask is not None:
-            loss = masked_mean(loss, action_mask)
-        loss = loss.mean()
-        return loss
+from base_trainer import Trainer
+from base_cb import Callback
+from base_strategy import Strategy
 
-
-class ValueLoss(nn.Module):
-    """
-    Value Loss for PPO
-    """
-
-    def __init__(self, clip_eps: float = 0.4) -> None:
-        super().__init__()
-        self.clip_eps = clip_eps
-
-    def forward(self,
-                values: torch.Tensor,
-                old_values: torch.Tensor,
-                reward: torch.Tensor,
-                action_mask: Optional[torch.Tensor] = None) -> torch.Tensor:
-        values_clipped = old_values + (values - old_values).clamp(-self.clip_eps, self.clip_eps)
-        surr1 = (values_clipped - reward)**2
-        surr2 = (values - reward)**2
-        loss = torch.max(surr1, surr2)
-        loss = loss.mean()
-        return loss
 
 class PPOTrainer(Trainer):
     """
@@ -115,8 +85,8 @@ class PPOTrainer(Trainer):
                                         experience.action_log_probs,
                                         experience.advantages,
                                         action_mask=experience.action_mask)
-        actor_loss.backward()
-        self.actor_optim.step()
+        self.strategy.backward(actor_loss, self.actor, self.actor_optim)
+        self.strategy.optimizer_step(self.actor_optim)
         self.actor_optim.zero_grad()
 
         values = self.critic(experience.sequences,
@@ -126,8 +96,23 @@ class PPOTrainer(Trainer):
                                           experience.values,
                                           experience.reward,
                                           action_mask=experience.action_mask)
-        critic_loss.backward()
-        self.critic_optim.step()
+        self.strategy.backward(critic_loss, self.critic, self.critic_optim)
+        self.strategy.optimizer_step(self.critic_optim)
         self.critic_optim.zero_grad()
 
         return {'actor_loss': actor_loss.item(), 'critic_loss': critic_loss.item()}
+
+
+def _set_default_generate_kwargs(strategy: Strategy, generate_kwargs: dict, actor: Actor) -> None:
+    origin_model = strategy._unwrap_actor(actor)
+    new_kwargs = {**generate_kwargs}
+    # use huggingface models method directly
+    if 'prepare_inputs_fn' not in generate_kwargs and hasattr(origin_model, 'prepare_inputs_for_generation'):
+        new_kwargs['prepare_inputs_fn'] = origin_model.prepare_inputs_for_generation
+
+    if 'update_model_kwargs_fn' not in generate_kwargs:
+        new_kwargs['update_model_kwargs_fn'] = update_model_kwargs_fn
+
+    return new_kwargs
+
+
