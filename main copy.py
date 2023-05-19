@@ -1,76 +1,122 @@
 import argparse
+import os
+from copy import deepcopy
+import torch
+from torch.optim import Adam
 
-from trainer import Trainer
+from chatgpt_ppo.ppo_trainer import PPOTrainer
+from chatgpt_ppo.naive_strategy import NaiveStrategy
 
-from utils import init_logger, load_tokenizer, set_seed, MODEL_CLASSES, MODEL_PATH_MAP
-
+from utils_main import init_logger, load_tokenizer, set_seed, MODEL_CLASSES, MODEL_PATH_MAP
 
 from data_loader import load_and_cache_examples
 
 
-
+# PPO
 def main(args):
     init_logger()
     set_seed(args)
+
+    config_class, model_class, token_class = MODEL_CLASSES[args.model_type]
+
+    tokenizer = token_class.from_pretrained(args.model_name)
     
-    tokenizer = load_tokenizer(args)
 
-    train_dataset = None
-    dev_dataset = None
-    test_dataset = None
+    # train_dataset = None
+    # test_dataset = None
+
+    model_config = config_class.from_pretrained(os.path.join(args.finetune_dir, args.finetune_config))
+    actor = model_class.from_pretrained(os.path.join(args.finetune_dir, args.finetune_actor), config=model_config)
+    critic = model_class.from_pretrained(args.model_name, config=model_config)
+    tokenizer = token_class.from_pretrained(args.model_name)
+    initial_model = deepcopy(actor)
+    # reward = # human (me!)
+
+    actor_optim = Adam(actor.parameters(), lr=5e-6)
+    critic_optim = Adam(critic.parameters(), lr=5e-6)
+
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu') # 추가
+    
+    print(args)
+    if not os.path.exists(args.output_dir):
+        os.makedirs(args.output_dir)
+
+    strategy = NaiveStrategy()
+    (actor, actor_optim), (critic, critic_optim), initial_model = strategy.prepare( # reward_model, 
+    (actor, actor_optim), (critic, critic_optim), initial_model) # reward_model, 
+
+    def tokenize_fn(texts):
+        batch = tokenizer(texts, return_tensors='pt', max_length=96, padding=True, truncation=True)
+        return {k: v.cuda() for k, v in batch.items()}
+
+    trainer = PPOTrainer(strategy,
+                     actor,
+                     critic,
+                    #  reward_model,
+                     initial_model,
+                     actor_optim,
+                     critic_optim,
+                     max_epochs=args.max_epochs,
+                     train_batch_size=args.train_batch_size,
+                     tokenizer=tokenize_fn,
+                     max_length=128, # 이건 뭐고
+                     do_sample=True,
+                     temperature=1.0, # 이건 뭐야
+                     top_k=50, # 얜 뭐임?
+                     pad_token_id=tokenizer.pad_token_id,
+                     eos_token_id=tokenizer.eos_token_id)
+
+    ## train!
+    trainer.fit(list_prompt,  # 입력 prompt
+                num_episodes=args.num_episodes,
+                max_timesteps=args.max_timesteps,
+                update_timesteps=args.update_timesteps)
+
+    ## save
+    # save model checkpoint after fitting on only rank0
+    strategy.save_model(actor, os.path.join(args.output_dir, 'actor.pt'), only_rank0=True)
+    # save optimizer checkpoint on all ranks
+    strategy.save_optimizer(actor_optim,
+                            os.path.join(args.output_dir, 'actor_optim_checkpoint_%d.pt' % (torch.cuda.current_device())),
+                            only_rank0=False)
  
-    if args.do_eval:
-        test_dataset = load_and_cache_examples(args, tokenizer, mode="test")
-    if args.do_train:
-        train_dataset = load_and_cache_examples(args, tokenizer, mode="train")
+    # if args.do_eval:
+    #     test_dataset = load_and_cache_examples(args, tokenizer, mode="test")
+    # if args.do_train:
+    #     train_dataset = load_and_cache_examples(args, tokenizer, mode="train")
 
-    trainer = Trainer(args, train_dataset, dev_dataset, test_dataset)
+    # trainer = Trainer(args, train_dataset, dev_dataset, test_dataset)
 
-    if args.do_train:
-        trainer.train()
+    # if args.do_train:
+    #     trainer.train()
 
-    if args.do_eval:
-        trainer.load_model()
-        trainer.evaluate("test", "eval")
+    # if args.do_eval:
+    #     trainer.load_model()
+    #     trainer.evaluate("test", "eval")
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-
-    parser.add_argument("--task", default="naver-ner", type=str, help="The name of the task to train")
-    parser.add_argument("--model_dir", default="./model", type=str, help="Path to save, load model")
-    parser.add_argument("--data_dir", default="./data", type=str, help="The input data dir")
-    parser.add_argument("--pred_dir", default="./preds", type=str, help="The prediction file dir")
-
-    parser.add_argument("--train_file", default="train.tsv", type=str, help="Train file")
-    parser.add_argument("--test_file", default="test.tsv", type=str, help="Test file")
-    parser.add_argument("--label_file", default="label.txt", type=str, help="Slot Label file")
-    parser.add_argument("--write_pred", action="store_true", help="Write prediction during evaluation")
-
-    parser.add_argument("--model_type", default="kobert", type=str, help="Model type selected in the list: " + ", ".join(MODEL_CLASSES.keys()))
-
+    parser.add_argument('--data_path_3_PPO', type=str, default='./data_kochatgpt/kochatgpt_3_PPO.jsonl')
+    parser.add_argument('--output_dir', type=str, default='./output_3_PPO')
     parser.add_argument('--seed', type=int, default=42, help="random seed for initialization")
-    parser.add_argument("--train_batch_size", default=32, type=int, help="Batch size for training.")
-    parser.add_argument("--eval_batch_size", default=64, type=int, help="Batch size for evaluation.")
-    parser.add_argument("--max_seq_len", default=50, type=int, help="The maximum total input sequence length after tokenization.")
-    parser.add_argument("--learning_rate", default=5e-5, type=float, help="The initial learning rate for Adam.")
-    parser.add_argument("--num_train_epochs", default=20.0, type=float, help="Total number of training epochs to perform.")
-    parser.add_argument("--weight_decay", default=0.0, type=float, help="Weight decay if we apply some.")
-    parser.add_argument('--gradient_accumulation_steps', type=int, default=1,
-                        help="Number of updates steps to accumulate before performing a backward/update pass.")
-    parser.add_argument("--adam_epsilon", default=1e-8, type=float, help="Epsilon for Adam optimizer.")
-    parser.add_argument("--max_grad_norm", default=1.0, type=float, help="Max gradient norm.")
-    parser.add_argument("--max_steps", default=-1, type=int, help="If > 0: set total number of training steps to perform. Override num_train_epochs.")
-    parser.add_argument("--warmup_steps", default=0, type=int, help="Linear warmup over warmup_steps.")
 
-    parser.add_argument('--logging_steps', type=int, default=1000, help="Log every X updates steps.")
-    parser.add_argument('--save_steps', type=int, default=1000, help="Save checkpoint every X updates steps.")
+    parser.add_argument('--pretrain', type=str, default=None)
+    parser.add_argument('--num_episodes', type=int, default=1)
+    parser.add_argument('--max_timesteps', type=int, default=3)
+    parser.add_argument('--update_timesteps', type=int, default=3)
+    parser.add_argument('--max_epochs', type=int, default=1)
+    parser.add_argument('--train_batch_size', type=int, default=8)
+    parser.add_argument('--max_length', type=int, default=250)
 
-    parser.add_argument("--do_train", action="store_true", help="Whether to run training.")
-    parser.add_argument("--do_eval", action="store_true", help="Whether to run eval on the test set.")
-    parser.add_argument("--no_cuda", action="store_true", help="Avoid using CUDA when available")
+    parser.add_argument('--model_type', type=str, default='koelectra-base')
+    parser.add_argument('--finetune_dir', type=str, default='./model_0418/')
+    parser.add_argument('--finetune_actor', type=str, default='pytorch_model.bin')
+    parser.add_argument('--finetune_config', type=str, default='config.json')
 
-    args = parser.parse_args()
 
-    args.model_name_or_path = MODEL_PATH_MAP[args.model_type]
+    args = parser.parse_args(args=[])
+    # args = parser.parse_args()
+
+    args.model_name = MODEL_PATH_MAP[args.model_type]
     main(args)

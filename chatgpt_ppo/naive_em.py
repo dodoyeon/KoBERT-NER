@@ -1,7 +1,7 @@
 import torch
-from chatgpt_ppo.utils import compute_reward, normalize
+from .utils import compute_reward, normalize
 
-from base_em import Experience, ExperienceMaker
+from .base_em import Experience, ExperienceMaker
 
 
 class NaiveExperienceMaker(ExperienceMaker):
@@ -14,7 +14,7 @@ class NaiveExperienceMaker(ExperienceMaker):
         self.actor.eval()
         self.critic.eval()
         self.initial_model.eval()
-        self.reward_model.eval()
+        # self.reward_model.eval()
 
         sequences, attention_mask, action_mask = self.actor.generate(input_ids,
                                                                      return_action_mask=True,
@@ -24,9 +24,10 @@ class NaiveExperienceMaker(ExperienceMaker):
         action_log_probs = self.actor(sequences, num_actions, attention_mask)
         base_action_log_probs = self.initial_model(sequences, num_actions, attention_mask)
         value = self.critic(sequences, action_mask, attention_mask)
-        r = self.reward_model(sequences, attention_mask)
+        # r = self.reward_model(sequences, attention_mask)
 
-        reward = compute_reward(r, self.kl_coef, action_log_probs, base_action_log_probs, action_mask=action_mask)
+        # reward = compute_reward(r, self.kl_coef, action_log_probs, base_action_log_probs, action_mask=action_mask)
+        reward = 1 # 임의값
 
         advantage = reward - value
         # TODO(ver217): maybe normalize adv

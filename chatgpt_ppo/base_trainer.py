@@ -8,8 +8,8 @@ from torch import Tensor
 from torch.utils.data import DistributedSampler
 from tqdm import tqdm
 
-from .callbacks import Callback
-from .strategies import Strategy
+from .base_cb import Callback
+from .base_strategy import Strategy
 from .utils import is_rank_0
 
 

@@ -1,16 +1,16 @@
 from typing import Any, Callable, Dict, List, Optional
 
 import torch.nn as nn
-from chatgpt_ppo.naive_em import Experience, NaiveExperienceMaker
-# from chatgpt_ppo.models.base import Actor, Critic
-from chatgpt_ppo.utils import update_model_kwargs_fn
-from chatgpt_ppo.loss import PolicyLoss, ValueLoss
-from chatgpt_ppo.naive_rb import NaiveReplayBuffer
+from .naive_em import Experience, NaiveExperienceMaker
+from chatgpt.models.base import Actor, Critic
+from .utils import update_model_kwargs_fn
+from .loss import PolicyLoss, ValueLoss
+from .naive_rb import NaiveReplayBuffer
 from torch.optim import Optimizer
 
-from base_trainer import Trainer
-from base_cb import Callback
-from base_strategy import Strategy
+from .base_trainer import Trainer
+from .base_cb import Callback
+from .base_strategy import Strategy
 
 
 class PPOTrainer(Trainer):
@@ -44,7 +44,7 @@ class PPOTrainer(Trainer):
                  strategy: Strategy,
                  actor: Actor,
                  critic: Critic,
-                 reward_model: nn.Module,
+                #  reward_model: nn.Module,
                  initial_model: Actor,
                  actor_optim: Optimizer,
                  critic_optim: Optimizer,
@@ -61,7 +61,7 @@ class PPOTrainer(Trainer):
                  dataloader_pin_memory: bool = True,
                  callbacks: List[Callback] = [],
                  **generate_kwargs) -> None:
-        experience_maker = NaiveExperienceMaker(actor, critic, reward_model, initial_model, kl_coef)
+        experience_maker = NaiveExperienceMaker(actor, critic, initial_model, kl_coef) # reward_model, 
         replay_buffer = NaiveReplayBuffer(train_batch_size, buffer_limit, buffer_cpu_offload)
         generate_kwargs = _set_default_generate_kwargs(strategy, generate_kwargs, actor)
         super().__init__(strategy, experience_maker, replay_buffer, experience_batch_size, max_epochs, tokenizer,

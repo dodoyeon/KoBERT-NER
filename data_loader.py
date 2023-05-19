@@ -6,7 +6,7 @@ import logging
 import torch
 from torch.utils.data import TensorDataset
 
-from utils import get_labels
+from utils_main import get_labels
 
 logger = logging.getLogger(__name__)
 

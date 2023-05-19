@@ -62,13 +62,13 @@ class ExperienceMaker(ABC):
     def __init__(self,
                  actor: Actor,
                  critic: nn.Module,
-                 reward_model: nn.Module,
+                #  reward_model: nn.Module,
                  initial_model: Actor,
                  kl_coef: float = 0.1) -> None:
         super().__init__()
         self.actor = actor
         self.critic = critic
-        self.reward_model = reward_model
+        # self.reward_model = reward_model
         self.initial_model = initial_model
         self.kl_coef = kl_coef
 

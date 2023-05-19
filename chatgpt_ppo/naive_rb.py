@@ -2,9 +2,9 @@ import random
 from typing import List
 
 import torch
-from chatgpt.experience_maker.base import Experience
+from .base_em import Experience
 
-from .base_em import ReplayBuffer
+from .base_rb import ReplayBuffer
 from .utils import BufferItem, make_experience_batch, split_experience_batch
 
 
