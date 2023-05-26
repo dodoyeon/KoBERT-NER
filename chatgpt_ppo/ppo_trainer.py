@@ -77,7 +77,7 @@ class PPOTrainer(Trainer):
 
     def training_step(self, experience: Experience) -> Dict[str, float]:
         self.actor.train()
-        self.critic.train()
+        # self.critic.train()
 
         num_actions = experience.action_mask.size(1)
         action_log_probs = self.actor(experience.sequences, num_actions, attention_mask=experience.attention_mask)
@@ -92,15 +92,15 @@ class PPOTrainer(Trainer):
         values = self.critic(experience.sequences,
                              action_mask=experience.action_mask,
                              attention_mask=experience.attention_mask)
-        critic_loss = self.critic_loss_fn(values,
-                                          experience.values,
-                                          experience.reward,
-                                          action_mask=experience.action_mask)
-        self.strategy.backward(critic_loss, self.critic, self.critic_optim)
-        self.strategy.optimizer_step(self.critic_optim)
+        # critic_loss = self.critic_loss_fn(values,
+        #                                   experience.values,
+        #                                   experience.reward,
+        #                                   action_mask=experience.action_mask)
+        # self.strategy.backward(critic_loss, self.critic, self.critic_optim)
+        # self.strategy.optimizer_step(self.critic_optim)
         self.critic_optim.zero_grad()
 
-        return {'actor_loss': actor_loss.item(), 'critic_loss': critic_loss.item()}
+        return {'actor_loss': actor_loss.item()} # , 'critic_loss': critic_loss.item()
 
 
 def _set_default_generate_kwargs(strategy: Strategy, generate_kwargs: dict, actor: Actor) -> None:

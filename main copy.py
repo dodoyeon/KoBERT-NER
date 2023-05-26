@@ -1,5 +1,6 @@
 import argparse
 import os
+import csv
 from copy import deepcopy
 import torch
 from torch.optim import Adam
@@ -11,6 +12,7 @@ from utils_main import init_logger, load_tokenizer, set_seed, MODEL_CLASSES, MOD
 
 from data_loader import load_and_cache_examples
 
+from chatgpt_ppo.reward_mari import reward_algorithm
 
 # PPO
 def main(args):
@@ -22,18 +24,20 @@ def main(args):
     tokenizer = token_class.from_pretrained(args.model_name)
     
 
-    # train_dataset = None
+    # train_dataset = load_and_cache_examples(args, tokenizer, mode="train")
     # test_dataset = None
+
 
     model_config = config_class.from_pretrained(os.path.join(args.finetune_dir, args.finetune_config))
     actor = model_class.from_pretrained(os.path.join(args.finetune_dir, args.finetune_actor), config=model_config)
-    critic = model_class.from_pretrained(args.model_name, config=model_config)
+    critic = reward_algorithm()
+    reward_model = reward_algorithm() # human (me!)
     tokenizer = token_class.from_pretrained(args.model_name)
     initial_model = deepcopy(actor)
-    # reward = # human (me!)
+    
 
     actor_optim = Adam(actor.parameters(), lr=5e-6)
-    critic_optim = Adam(critic.parameters(), lr=5e-6)
+    # critic_optim = Adam(critic.parameters(), lr=5e-6)
 
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu') # 추가
     
@@ -41,21 +45,26 @@ def main(args):
     if not os.path.exists(args.output_dir):
         os.makedirs(args.output_dir)
 
-    strategy = NaiveStrategy()
-    (actor, actor_optim), (critic, critic_optim), initial_model = strategy.prepare( # reward_model, 
-    (actor, actor_optim), (critic, critic_optim), initial_model) # reward_model, 
+    with open(args.data_path_3_PPO) as f:
+        readdata = list(csv.reader(f, delimiter='\t'))
+        list_data = [i[0] for i in readdata]
 
     def tokenize_fn(texts):
         batch = tokenizer(texts, return_tensors='pt', max_length=96, padding=True, truncation=True)
         return {k: v.cuda() for k, v in batch.items()}
 
+    strategy = NaiveStrategy()
+    (actor, actor_optim), initial_model = strategy.prepare( # (critic, critic_optim), reward_model, 
+    (actor, actor_optim), initial_model) # (critic, critic_optim), reward_model, 
+
+
     trainer = PPOTrainer(strategy,
                      actor,
                      critic,
-                    #  reward_model,
+                     reward_model,
                      initial_model,
                      actor_optim,
-                     critic_optim,
+                    #  critic_optim,
                      max_epochs=args.max_epochs,
                      train_batch_size=args.train_batch_size,
                      tokenizer=tokenize_fn,
@@ -67,7 +76,7 @@ def main(args):
                      eos_token_id=tokenizer.eos_token_id)
 
     ## train!
-    trainer.fit(list_prompt,  # 입력 prompt
+    trainer.fit(list_data,  # 입력 prompt
                 num_episodes=args.num_episodes,
                 max_timesteps=args.max_timesteps,
                 update_timesteps=args.update_timesteps)
@@ -97,7 +106,7 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_path_3_PPO', type=str, default='./data_kochatgpt/kochatgpt_3_PPO.jsonl')
+    parser.add_argument('--data_path_3_PPO', type=str, default='./data/tr_ppo.tsv')
     parser.add_argument('--output_dir', type=str, default='./output_3_PPO')
     parser.add_argument('--seed', type=int, default=42, help="random seed for initialization")
 
