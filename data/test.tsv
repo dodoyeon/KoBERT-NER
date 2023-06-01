@@ -1328,7 +1328,6 @@
 [CLS] 이름 ##은 정은 ##성 , 01 ##9 - 09 ##96 - 89 ##95 ##입니다 . [SEP]	-100 O O SS_NAME-B SS_NAME-I O ID_PHONE-B ID_PHONE-I ID_PHONE-I ID_PHONE-I ID_PHONE-I ID_PHONE-I ID_PHONE-I ID_PHONE-I O O -100
 [CLS] 강원도 원주시 단 ##구 ##동 500 - 1 [SEP]	-100 AD_METRO-B AD_CITY-B AD_ADDRESS-B AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I -100
 [CLS] 반품 ##이 되 ##었 ##습 ##니다 . [SEP]	-100 O O O O O O O -100
-[CLS] 반품 접수 되 ##었 ##습 ##니다 . [SEP]	-100 O O O O O O O -100
 [CLS] 배 ##미 ##주 ##였 ##습 ##니다 . [SEP]	-100 SS_NAME-B SS_NAME-I SS_NAME-I O O O O -100
 [CLS] 37 ##61 ##0 ##53 ##입니다 . [SEP]	-100 O O O O O O -100
 [CLS] 본인 ##의 출생 ##월일 ##이 무엇 ##인 ##가요 ? [SEP]	-100 O O O O O O O O O -100

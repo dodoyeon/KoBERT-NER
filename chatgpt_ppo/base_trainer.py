@@ -2,10 +2,10 @@ from abc import ABC, abstractmethod
 from typing import Any, Callable, Dict, List, Optional, Union
 
 import torch
-from chatgpt.experience_maker import Experience, ExperienceMaker
-from chatgpt.replay_buffer import ReplayBuffer
+from .base_em import Experience, ExperienceMaker
+from .base_rb import ReplayBuffer
 from torch import Tensor
-from torch.utils.data import DistributedSampler
+from torch.utils.data import DataLoader, RandomSampler, SequentialSampler, DistributedSampler
 from tqdm import tqdm
 
 from .base_cb import Callback
@@ -83,44 +83,49 @@ class Trainer(ABC):
                 pbar.set_postfix(metrics)
         else:
             for epoch in range(self.max_epochs):
-                self._on_learn_epoch_start(epoch)
+                # self._on_learn_epoch_start(epoch)
                 if isinstance(dataloader.sampler, DistributedSampler):
                     dataloader.sampler.set_epoch(epoch)
                 pbar = tqdm(dataloader, desc=f'Train epoch [{epoch+1}/{self.max_epochs}]', disable=not is_rank_0())
                 for experience in pbar:
-                    self._on_learn_batch_start()
+                    # self._on_learn_batch_start()
                     experience.to_device(device)
                     metrics = self.training_step(experience)
-                    self._on_learn_batch_end(metrics, experience)
+                    # self._on_learn_batch_end(metrics, experience)
                     pbar.set_postfix(metrics)
-                self._on_learn_epoch_end(epoch)
+                # self._on_learn_epoch_end(epoch)
 
-    def fit(self, prompts, num_episodes: int = 50000, max_timesteps: int = 500, update_timesteps: int = 5000) -> None:
+    def fit(self, train_dataset, num_episodes: int = 50000, max_timesteps: int = 500, update_timesteps: int = 5000) -> None:
         time = 0
-        sampler = self.strategy.setup_sampler(prompts)
-        self._on_fit_start()
-        for episode in range(num_episodes):
-            self._on_episode_start(episode)
-            for timestep in tqdm(range(max_timesteps),
-                                 desc=f'Episode [{episode+1}/{num_episodes}]',
-                                 disable=not is_rank_0()):
-                time += 1
-                rand_prompts = sampler.sample(self.experience_batch_size)
-                if self.tokenizer is not None:
-                    inputs = self.tokenizer(rand_prompts)
-                else:
-                    inputs = rand_prompts
-                self._on_make_experience_start()
-                experience = self._make_experience(inputs)
-                self._on_make_experience_end(experience)
-                self.replay_buffer.append(experience)
-                if time % update_timesteps == 0:
-                    self._learn()
-                    self.replay_buffer.clear()
-            self._on_episode_end(episode)
-        self._on_fit_end()
+        # sampler = self.strategy.setup_sampler(prompts)
+        # sampler = RandomSampler(train_dataset) # 왜 샘플러를 따로 뒀지? 없이 shuffle 하면안되나 -> 상관없음.
+        train_dataloader = DataLoader(train_dataset, shuffle=True, batch_size=self.experience_batch_size)
 
-    # TODO(ver217): maybe simplify these code using context
+        # self._on_fit_start()
+        for batch in train_dataloader:
+            for episode in range(num_episodes):
+                # self._on_episode_start(episode)
+                for timestep in tqdm(range(max_timesteps),
+                                    desc=f'Episode [{episode+1}/{num_episodes}]',
+                                    disable=not is_rank_0()):
+                    time += 1
+                    # rand_prompts, rand_labels = sampler.sample(self.experience_batch_size)
+                    rand_prompts = {'input_ids': batch[0], 'attention_mask': batch[1], 'labels': batch[3]}
+                    if self.tokenizer is not None:
+                        inputs = self.tokenizer(rand_prompts)
+                    else:
+                        inputs = rand_prompts
+                    # self._on_make_experience_start()
+                    experience = self._make_experience(inputs)
+                    # self._on_make_experience_end(experience)
+                    self.replay_buffer.append(experience)
+                    if time % update_timesteps == 0:
+                        self._learn()
+                        self.replay_buffer.clear()
+                # self._on_episode_end(episode)
+            # self._on_fit_end()
+
+        # TODO(ver217): maybe simplify these code using context
     def _on_fit_start(self) -> None:
         for callback in self.callbacks:
             callback.on_fit_start()

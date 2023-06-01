@@ -44,10 +44,10 @@ class PPOTrainer(Trainer):
                  strategy: Strategy,
                  actor: Actor,
                  critic: Critic,
-                #  reward_model: nn.Module,
+                 reward_model: nn.Module,
                  initial_model: Actor,
                  actor_optim: Optimizer,
-                 critic_optim: Optimizer,
+                #  critic_optim: Optimizer,
                  kl_coef: float = 0.1,
                  train_batch_size: int = 8,
                  buffer_limit: int = 0,
@@ -70,10 +70,10 @@ class PPOTrainer(Trainer):
         self.critic = critic
 
         self.actor_loss_fn = PolicyLoss(eps_clip)
-        self.critic_loss_fn = ValueLoss(value_clip)
+        # self.critic_loss_fn = ValueLoss(value_clip)
 
         self.actor_optim = actor_optim
-        self.critic_optim = critic_optim
+        # self.critic_optim = critic_optim
 
     def training_step(self, experience: Experience) -> Dict[str, float]:
         self.actor.train()
@@ -98,7 +98,7 @@ class PPOTrainer(Trainer):
         #                                   action_mask=experience.action_mask)
         # self.strategy.backward(critic_loss, self.critic, self.critic_optim)
         # self.strategy.optimizer_step(self.critic_optim)
-        self.critic_optim.zero_grad()
+        # self.critic_optim.zero_grad()
 
         return {'actor_loss': actor_loss.item()} # , 'critic_loss': critic_loss.item()
 

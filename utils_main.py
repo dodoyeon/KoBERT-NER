@@ -49,7 +49,7 @@ def get_test_texts(args):
 
 
 def get_labels(args):
-    return [label.strip() for label in open(os.path.join(args.data_dir, args.label_file), 'r', encoding='utf-8')]
+    return [label.strip() for label in open(os.path.join('data', 'label.txt'), 'r', encoding='utf-8')]
 
 
 def load_tokenizer(args):
