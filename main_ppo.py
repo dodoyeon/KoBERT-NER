@@ -7,12 +7,13 @@ from torch.optim import Adam
 
 from chatgpt_ppo.ppo_trainer import PPOTrainer
 from chatgpt_ppo.naive_strategy import NaiveStrategy
+from chatgpt_ppo.reward_mari import reward_algorithm
 
 from utils_main import init_logger, load_tokenizer, get_labels, set_seed, MODEL_CLASSES, MODEL_PATH_MAP
 
 from data_loader import load_and_cache_examples
 
-from chatgpt_ppo.reward_mari import reward_algorithm
+
 
 # PPO
 def main(args):
@@ -25,12 +26,11 @@ def main(args):
 
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
-    # train_dataset = load_and_cache_examples(args, tokenizer, mode="train")
 
     model_config = config_class.from_pretrained(os.path.join(args.finetune_dir, args.finetune_config))
     actor = model_class.from_pretrained(os.path.join(args.finetune_dir, args.finetune_actor), config=model_config)
-    critic = reward_algorithm()
-    reward_model = reward_algorithm() # human (me!)
+    critic = reward_algorithm
+    reward_model = reward_algorithm # human (me!)
     tokenizer = token_class.from_pretrained(args.model_name_or_path)
     initial_model = deepcopy(actor)
     
@@ -53,9 +53,9 @@ def main(args):
     if args.do_train:
         train_dataset = load_and_cache_examples(args, tokenizer, mode="train")
 
-    def tokenize_fn(texts):
-        batch = tokenizer(texts, return_tensors='pt', max_length=96, padding=True, truncation=True)
-        return {k: v.cuda() for k, v in batch.items()}
+    # def tokenize_fn(texts):
+    #     batch = tokenizer(texts, return_tensors='pt', max_length=96, padding=True, truncation=True)
+    #     return {k: v.cuda() for k, v in batch.items()}
 
     strategy = NaiveStrategy()
     (actor, actor_optim), initial_model = strategy.prepare( # (critic, critic_optim), reward_model, 

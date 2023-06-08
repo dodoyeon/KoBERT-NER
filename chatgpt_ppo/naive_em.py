@@ -10,7 +10,7 @@ class NaiveExperienceMaker(ExperienceMaker):
     """
 
     @torch.no_grad()
-    def make_experience(self, input_ids: torch.Tensor, **generate_kwargs) -> Experience:
+    def make_experience(self, input_ids: torch.Tensor, labels: torch.Tensor, attention_mask: torch.Tensor, **generate_kwargs) -> Experience:
         self.actor.eval()
         # self.critic.eval()
         self.initial_model.eval()
@@ -25,13 +25,12 @@ class NaiveExperienceMaker(ExperienceMaker):
                             # **generate_kwargs) # sequences, attention_mask, action_mask
         # num_actions = action_mask.size(1)
 
-        action_log_probs = self.actor(sequences, num_actions, attention_mask)
-        base_action_log_probs = self.initial_model(sequences, num_actions, attention_mask)
-        value = self.critic(sequences, action_mask, attention_mask)
-        r = self.reward_model(sequences, attention_mask)
+        action_log_probs = self.actor(input_ids) # sequences, num_actions, attention_mask
+        base_action_log_probs = self.initial_model(input_ids)
+        value = self.critic(outputs['logits'], labels, attention_mask)
+        r = self.reward_model(outputs['logits'], labels, attention_mask)
 
         reward = compute_reward(r, self.kl_coef, action_log_probs, base_action_log_probs, action_mask=action_mask)
-        reward = 1 # 임의값
 
         advantage = reward - value
         # TODO(ver217): maybe normalize adv

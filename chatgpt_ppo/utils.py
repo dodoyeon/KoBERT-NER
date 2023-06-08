@@ -108,7 +108,7 @@ def compute_approx_kl(log_probs: torch.Tensor,
     return approx_kl
 
 
-def compute_reward(r: Union[torch.Tensor, float],
+def compute_reward(r: Union[torch.Tensor, float], # PPO 에서 
                    kl_coef: float,
                    log_probs: torch.Tensor,
                    log_probs_base: torch.Tensor,

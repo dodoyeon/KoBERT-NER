@@ -52,10 +52,6 @@ def get_labels(args):
     return [label.strip() for label in open(os.path.join('data', 'label.txt'), 'r', encoding='utf-8')]
 
 
-def load_tokenizer(args):
-    return MODEL_CLASSES[args.model_type][2].from_pretrained(args.model_name_or_path)
-
-
 def init_logger():
     logging.basicConfig(format='%(asctime)s - %(levelname)s - %(name)s -   %(message)s',
                         datefmt='%m/%d/%Y %H:%M:%S',
@@ -66,6 +62,8 @@ def set_seed(args):
     random.seed(args.seed)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
+    torch.backends.cudnn.deterministic = True # add
+    torch.backends.cudnn.benchmark = False # add
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(args.seed)
 
@@ -85,3 +83,6 @@ def f1_pre_rec(labels, preds):
 
 def show_report(labels, preds):
     return classification_report(labels, preds, suffix=True)
+
+def custom_loss():
+    return 
