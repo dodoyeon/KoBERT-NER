@@ -64,6 +64,8 @@ if __name__ == '__main__':
     parser.add_argument("--max_grad_norm", default=1.0, type=float, help="Max gradient norm.")
     parser.add_argument("--max_steps", default=-1, type=int, help="If > 0: set total number of training steps to perform. Override num_train_epochs.")
     parser.add_argument("--warmup_steps", default=0, type=int, help="Linear warmup over warmup_steps.")
+    parser.add_argument("--loss", default=0, type=int, help="Loss selection")
+
 
     parser.add_argument('--logging_steps', type=int, default=1000, help="Log every X updates steps.")
 
