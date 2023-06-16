@@ -5,9 +5,9 @@ from copy import deepcopy
 import torch
 from torch.optim import Adam
 
-from chatgpt_ppo.ppo_trainer import PPOTrainer
-from chatgpt_ppo.naive_strategy import NaiveStrategy
-from chatgpt_ppo.reward_mari import reward_algorithm
+from chat_ppo.ppo_trainer import PPOTrainer
+from chat_ppo.naive_strategy import NaiveStrategy
+from chat_ppo.reward_mari import reward_algorithm
 
 from utils_main import init_logger, load_tokenizer, get_labels, set_seed, MODEL_CLASSES, MODEL_PATH_MAP
 

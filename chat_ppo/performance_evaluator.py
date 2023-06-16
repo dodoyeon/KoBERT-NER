@@ -3,7 +3,7 @@ from typing import Optional
 
 import torch
 import torch.distributed as dist
-from chatgpt_ppo.base_em import Experience
+from chat_ppo.base_em import Experience
 
 from base_cb import Callback
 

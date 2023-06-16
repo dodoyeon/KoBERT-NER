@@ -142,5 +142,4 @@ cached*
 #################### virtual env
 electra/
 model_0418/
-output_3_PPO/
-
+output*

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any
 
-from chatgpt_ppo.base_em import Experience
+from chat_ppo.base_em import Experience
 
 
 class ReplayBuffer(ABC):

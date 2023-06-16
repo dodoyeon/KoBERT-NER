@@ -6,7 +6,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 from chatgpt.models.base import Actor, Critic, RewardModel
-from chatgpt_ppo.base_rb import ReplayBuffer
+from chat_ppo.base_rb import ReplayBuffer
 from torch.optim import Optimizer
 from torch.utils.data import DataLoader
 

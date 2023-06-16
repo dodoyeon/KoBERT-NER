@@ -1,6 +1,6 @@
 from abc import ABC
 
-from chatgpt_ppo.base_em import Experience
+from chat_ppo.base_em import Experience
 
 
 class Callback(ABC):
