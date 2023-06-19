@@ -10,16 +10,16 @@ import torch
 import torch.nn as nn
 # import matplotlib.pyplot as plt
 
-from utils_main import compute_metrics, get_labels, show_report, get_test_texts, custom_loss
+from utils_main import compute_metrics, show_report, get_test_texts, custom_loss
 
 logger = logging.getLogger(__name__)
 
 class Trainer_online():
-    def __init__(self, args, train_dataset, test_dataset, actor, initial_model):
+    def __init__(self, args, train_dataset, test_dataset, actor, initial_model, label_lst):
         self.args = args
         self.train_data = train_dataset
         self.test_data = test_dataset
-        self.label_lst = get_labels(args)
+        self.label_lst = label_lst
         self.pad_token_label_id = nn.CrossEntropyLoss().ignore_index
 
         self.model = actor
@@ -34,10 +34,10 @@ class Trainer_online():
             t_total = len(self.dataloader) // args.gradient_accumulation_steps * args.epochs
 
 
-        # actor_optimizer = Adam(actor.parameters(), lr=self.args.learning_rate, eps=self.args.adam_epsilon)
-        self.optimizer = AdamW(actor.parameters(), lr=args.learning_rate, eps=args.adam_epsilon)
-        self.scheduler = get_linear_schedule_with_warmup(self.optimizer, num_warmup_steps=args.warmup_steps, num_training_steps=t_total)
-
+        self.optimizer = Adam(actor.parameters(), lr=self.args.learning_rate, eps=self.args.adam_epsilon)
+        # self.optimizer = AdamW(actor.parameters(), lr=args.learning_rate, eps=args.adam_epsilon)
+        # self.scheduler = get_linear_schedule_with_warmup(self.optimizer, num_warmup_steps=args.warmup_steps, num_training_steps=t_total)
+        self.scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(self.optimizer, T_0=10, T_mult=1, eta_min=0.00001)
 
         self.device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
         self.model.to(self.device)

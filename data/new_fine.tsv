@@ -1,0 +1,125 @@
+[CLS] 신체 : 183 ##c ##m [SEP]	-100 O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I -100
+[CLS] 중량 45 ##키 ##로 하 ##는데 178 / 55 ##인 ##데 많이 드 ##는 ##건 ##가요 ? . ㅈ . [SEP]	-100 O O O O O O SS_LENGTH-B O SS_WEIGHT-B O O O O O O O O O O O -100
+[CLS] 강호동 키 ##가 183 ##센 ##티 ##네 몸 ##무 ##개 ##도 110 ##키 ##로 ##정 ##도 나가 ##네 [SEP]	-100 SS_NAME-B O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O -100
+[CLS] 178 ##c ##m / 58 ##k ##g 정도 ##라 보통 바지 ##S 아님 [SEP]	-100 SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O -100
+[CLS] 키 196 ##에 신체 ##도 좋 ##아 ##서 다 특급 ##인 ##데 [SEP]	-100 O SS_LENGTH-B O O O O O O O O O O -100
+[CLS] 제 키 ##가 170 ##c ##m ##이 되 ##는데 , 레 ##깅 ##스 기장 ##이 너무 짧 ##지 않 ##아 ##서 복숭아 ##뼈 ##까 ##지 닿 ##는 것 ##도 마음 ##에 들 ##더라 ##고 ##요 . [SEP]	-100 O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O -100
+[CLS] 물론 키 ##가 193 ##이 ##구요 [SEP]	-100 O O O SS_LENGTH-B O O -100
+[CLS] 포지션 ##은 센터 ##인 ##데 키 ##가 무려 197 ##c ##m 임 ㄷ ##ㄷ ##ㄷ [SEP]	-100 O O O O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O -100
+[CLS] 190 cm [SEP]	-100 SS_LENGTH-B SS_LENGTH-I -100
+[CLS] ? 키 ##도 172 ##신 ##가요 [SEP]	-100 O O O SS_LENGTH-B O O -100
+[CLS] 신병 갔 ##다 왔 ##는데 바지 ##가 [UNK] 178 / 60 ##이 ##였 ##는데 지금 64 ##키 ##로 ##인 ##데 드 ##블 ##코 넘 꽉 ##끼 ##고 ㅜ . . 이제 사이즈 한 29 ##로 가야 ##할 ##까요 ? . . . [SEP]	-100 O O O O O O O O SS_LENGTH-B O SS_WEIGHT-B O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O O O O O O O O O O O O O O O -100
+[CLS] 전 경기 예선 탈락 ##에 빛나 ##는 키 181 ##의 개 ##커 ##나 ##인 [SEP]	-100 O O O O O O O O SS_LENGTH-B O O O O O -100
+[CLS] 이름 : 오이 ##열 E ##N ##F ##J 92 ##년 ##생 174 ##c ##m 71 kg 다 ##재 ##다 ##능 ##이 장점 ##인 ##사람 [SEP]	-100 O O SS_NAME-B SS_NAME-I O O O O SS_AGE-B SS_AGE-I SS_AGE-I SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I SS_WEIGHT-B SS_WEIGHT-I O O O O O O O O -100
+[CLS] 위 ##무 ##선 186 남 ##망 ##기 188 ##인 ##가 [SEP]	-100 SS_NAME-B SS_NAME-I SS_NAME-I SS_LENGTH-B SS_NAME-B SS_NAME-I SS_NAME-I SS_LENGTH-B O O -100
+[CLS] 저 ##는 180 입니다 [SEP]	-100 O O SS_LENGTH-B O -100
+[CLS] 키 ##가 188 ##이 ##라 ##내 ##요 [SEP]	-100 O O SS_LENGTH-B O O O O -100
+[CLS] 김진 ##수 ( 178 / 60 ) [SEP]	-100 SS_NAME-B SS_NAME-I O SS_LENGTH-B O SS_WEIGHT-B O -100
+[CLS] 이상 ##은 ##님 178 ##이 ##라는 ##데 김보 ##라 감독 ##님 ##도 비슷 ##해 ##보 ##였 ##다 [SEP]	-100 SS_NAME-B SS_NAME-I O SS_LENGTH-B O O O SS_NAME-B SS_NAME-I O O O O O O O O -100
+[CLS] 아빠 ##랑 키 재 봐서 151 ##센 ##치 나왔 ##어요 [SEP]	-100 O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O -100
+[CLS] 웅 16 ##살 ##에 185 ##c ##m ##를 넘긴 조 ##디 ##이 ##야 ##기 [SEP]	-100 O SS_AGE-B SS_AGE-I O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O O O -100
+[CLS] 악 ! ! ! ! ! ! ! ! ! 키 백 ##구 ##십 ##삼 [SEP]	-100 O O O O O O O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I -100
+[CLS] 임수 ##향 출생 : 1990 ##년 4 ##월 19 ##일 신체 : 169 ##c ##m , 48 ##k ##g [SEP]	-100 SS_NAME-B SS_NAME-I O O SS_BIRTH-B SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I -100
+[CLS] 헐 나 키 ##컸 ##나 ##봐 174 . 3 ##이 ##라 ##니 [SEP]	-100 O O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O -100
+[CLS] 156 ##되 ##니까 157 ##됐 ##으면 ##좋 ##겠 ##당 . [SEP]	-100 SS_LENGTH-B O O O O O O O O O -100
+[CLS] 155 ##c ##m / 49 ##k ##g 적혀 ##있 ##는데 [SEP]	-100 SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O -100
+[CLS] 164 ##c ##m 65 ##k ##g [SEP]	-100 SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I -100
+[CLS] 스펙 ##은 173 / 63 이 ##고 그나마 팔뚝 ##쪽 ##이 눈 ##바 ##디 ##로 보이 ##는 ##정 ##도 ##고 당연 복 ##근 ##은 없 ##읍 ##니다 헤헤 [SEP]	-100 O O SS_LENGTH-B O SS_WEIGHT-B O O O O O O O O O O O O O O O O O O O O O O O -100
+[CLS] 주연 ##이 곧 180 찍 ##겟 ##는데 [SEP]	-100 SS_NAME-B O O SS_LENGTH-B O O O -100
+[CLS] 나 ##도 160 . 9 ##됐 ##음 [SEP]	-100 O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O -100
+[CLS] 지금 키 ##가 아빠 ##보 ##다는 크 ##다 . 172 . 7 ##c ##m ##다 [SEP]	-100 O O O O O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I O -100
+[CLS] 야 나 건강 ##검 ##진 해서 키 ##잿 ##는데 168 . 8 나 ##왓 ##어 키 ##가 컷 ##네 [SEP]	-100 O O O O O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O O O -100
+[CLS] 키 181 . 1 cm ( 병원 , 보건소 측정 기준 ) [SEP]	-100 O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I O O O O O O O -100
+[CLS] 173 ##이 ##라고 해 ##줘 나 155 ##야 오빠 ##한 ##테 ##만 말 ##해 ##주 ##는 거야 [SEP]	-100 SS_LENGTH-B O O O O O SS_LENGTH-B O O O O O O O O O O -100
+[CLS] 하지 ##만 십 ##년 ##째 156 ##센 ##치 ##인 ##걸 ! [SEP]	-100 O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O -100
+[CLS] 190 ##에 ##게 목 ##받침 ##은 없 ##는 ##겨 [SEP]	-100 SS_LENGTH-B O O O O O O O O -100
+[CLS] 키 169 . 7 ##c ##m , 체중 47 . 1 ##k ##g ##으로 알려진 야 ##옹 ##이 작가 ##는 지난 2018 ##년 ##부터 인기 웹툰 ' 여신 ##강 ##림 ' 연재 중이 ##다 . [SEP]	-100 O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O SS_NAME-B SS_NAME-I SS_NAME-I O O O O O O O O O O O O O O O O O -100
+[CLS] 임 ##호우 키 179 골격 ##근 ##량 33 . 6 입니다 ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ ##ㅋㅋㅋ [SEP]	-100 SS_NAME-B SS_NAME-I O SS_LENGTH-B O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O -100
+[CLS] 박찬 ##열 키 다시 재 ##봐 185 ##라 ##니 187 ##은 거 ##뜬 ##해 보 ##엿 ##는데 [SEP]	-100 SS_NAME-B SS_NAME-I O O O O SS_LENGTH-B O O SS_LENGTH-B O O O O O O O -100
+[CLS] 고 ##란 키 ##가 193 [SEP]	-100 SS_NAME-B SS_NAME-I O O SS_LENGTH-B -100
+[CLS] 김성 ##은 ##은 키 171 ##c ##m ##에 몸무게 49 . 1 ##k ##g , 체지방 6 . 4 ##k ##g . [SEP]	-100 SS_NAME-B SS_NAME-I O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I SS_WEIGHT-I O -100
+[CLS] 키 ##가 193 ##인 ##데 ##요 [SEP]	-100 O O SS_LENGTH-B O O O -100
+[CLS] 인터 ##미 ##션 수 ##겸 ##이 181 ##c ##m 이라 ##해서 설레 ##는 ##중 [SEP]	-100 O O O SS_NAME-B SS_NAME-I O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O -100
+[CLS] 제 키는 170 ##c ##m 입니다 ^ ^ [SEP]	-100 O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O -100
+[CLS] 키 ##가 171 . 8 ##c ##m ##에 ##요 실제로 보시 ##는 분 ##들 ##은 키 ##보 ##고 놀라 ##시 ##는 분 ##들이 있 ##으 ##시 ##긴 해요 [SEP]	-100 O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I O O O O O O O O O O O O O O O O O O O O O -100
+[CLS] 105 사이즈 176 / 73 [SEP]	-100 O O SS_LENGTH-B O SS_WEIGHT-B -100
+[CLS] 158 쭈 ##구리 화장품 ##산 ##거 품 ##에 꼭 ##쥐 ##고 [SEP]	-100 SS_LENGTH-B O O O O O O O O O O -100
+[CLS] 머 159 ##임 [SEP]	-100 O SS_LENGTH-B O -100
+[CLS] 내 ##가 166 ##에 5 ##센 ##치 구두 신 ##었 ##는데 [SEP]	-100 O O SS_LENGTH-B O O O O O O O O -100
+[CLS] 154 / 88 인데 [SEP]	-100 SS_LENGTH-B O SS_WEIGHT-B O -100
+[CLS] 킴 카다 ##시안 프로필 출생 : 1980 ##년 10 ##월 21 ##일 , 미국 신체 : 159 ##c ##m [SEP]	-100 SS_NAME-B SS_NAME-I SS_NAME-I O O O SS_BIRTH-B SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I -100
+[CLS] 정호 ##연 ##의 프로필 ##에 따르 ##면 179 ##c ##m 신장 ##에 몸무게 ##가 49 ##k ##g ##밖 ##에 되 ##지 않 ##을 정도 ##로 매우 야 ##위 ##었 ##다 . [SEP]	-100 SS_NAME-B SS_NAME-I O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O O O O O -100
+[CLS] 아뇨 저 145 ##에 89 ##키 ##로 ##임 [SEP]	-100 O O SS_LENGTH-B O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O -100
+[CLS] 적어도 160 ##은 넘 ##거 ##든 ! ! [SEP]	-100 O SS_LENGTH-B O O O O O O -100
+[CLS] 녜 ? ? ? ? ? ? 173 ##c ##m 돼요 [SEP]	-100 O O O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O -100
+[CLS] 와 ##타 ##시 171 ##인 ##데 , , 네덜란드 ##에 ##선 꼬꼬 ##마 [SEP]	-100 O O O SS_LENGTH-B O O O O O O O O O -100
+[CLS] 전 179 ##거 ##든 ##여 [SEP]	-100 O SS_LENGTH-B O O O -100
+[CLS] 이어 169 . 2 ##c ##m ##의 큰 키를 자랑 , 자연 ##스러운 포즈 ##를 취하 ##고 있 ##는 모습 ##은 일상 ##도 화보 ##로 만들 ##었 ##다 . [SEP]	-100 O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I O O O O O O O O O O O O O O O O O O O O O O O -100
+[CLS] 건강 ##검 ##진 ##중 키는 179 . 7 ##c ##m , 몸무게 ##는 윽 비밀 ! ! [SEP]	-100 O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I O O O O O O O -100
+[CLS] 키는 165 ##고 기장 괜찮 ##은 ##걸 ##로 ! 엄청 비싸 ##진 않 ##고 질 괜찮 ##으면 좋 ##갰 ##어 b ##b [SEP]	-100 O SS_LENGTH-B O O O O O O O O O O O O O O O O O O O O -100
+[CLS] 내 키 180 [SEP]	-100 O O SS_LENGTH-B -100
+[CLS] 그래서 내 키는 157 . 9 ##냐 161 ##이 ##냐 . . [SEP]	-100 O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O SS_LENGTH-B O O O O -100
+[CLS] 키 ##가 한 180 ##되 ##보이 ##는 ##건 기분 ##탓 ##이 ##겠 ##지 . . . [SEP]	-100 O O O SS_LENGTH-B O O O O O O O O O O O O -100
+[CLS] 170 ##에 50 ##키 ##로이 ##신 ##분 있 ##나 ##여 [SEP]	-100 SS_LENGTH-B O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O -100
+[CLS] 신장 ##이 196 ##센 ##치 ##였 ##나 [SEP]	-100 O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O -100
+[CLS] 사이즈 ##를 문의 ##해 ##주 ##시 ##는 분이 많 ##았 ##는데 , 저 ##와 비슷 ##한 170 ##에 마르 ##신 ##분 ##들이 ##라면 M ##사이 ##즈 ##가 딱 ##인 듯 ! [SEP]	-100 O O O O O O O O O O O O O O O O SS_LENGTH-B O O O O O O O O O O O O O O -100
+[CLS] 키 182 ##에 76 , 77 ##이 기본 ##이 ##고 [SEP]	-100 O SS_LENGTH-B O SS_WEIGHT-B O SS_WEIGHT-B O O O O -100
+[CLS] 키는 179 거인 > _ < [SEP]	-100 O SS_LENGTH-B O O O O -100
+[CLS] 키 160 아이 ##큐 120 [SEP]	-100 O SS_LENGTH-B O O O -100
+[CLS] 158 ##c ##m 78 ##K ##g 평범 ##한 여고생 ##이 ##에 ##양 [SEP]	-100 SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O -100
+[CLS] 애인 187 나 147 . . . [SEP]	-100 O SS_LENGTH-B O SS_LENGTH-B O O O -100
+[CLS] 162 . 5 ##센 ##티 ##에 102 ##키 ##로 ##인 여성 주인공 ##이 ##닷 [SEP]	-100 SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I SS_LENGTH-I O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O -100
+[CLS] 175 / 68 인데 [SEP]	-100 SS_LENGTH-B O SS_WEIGHT-B O -100
+[CLS] 저 165 ##인 ##데 [SEP]	-100 O SS_LENGTH-B O O -100
+[CLS] 모델 시절 ##에 ##는 키 ##가 188 ##c ##m ##인 ##데 68 ##k ##g ##를 유지 ##했 ##었 ##다 . [SEP]	-100 O O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O -100
+[CLS] 신체 : 171 ##c ##m [SEP]	-100 O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I -100
+[CLS] 175 ##c ##m ##면 난 키 크 ##다고 생각 ##해 [SEP]	-100 SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O O O -100
+[CLS] 나 키 188 ##c ##m ##라고 말씀 ##드리 ##자 [SEP]	-100 O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O -100
+[CLS] 키 180 ##이 ##라 해도 아무 ##도 안 믿 ##어 ##주 ##는 이유 ##는 ? [SEP]	-100 O SS_LENGTH-B O O O O O O O O O O O O O -100
+[CLS] 이상 ##우 185 ##c ##m ##내 ? ? 키 엄청 ##크 ##다 [SEP]	-100 SS_NAME-B SS_NAME-I SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O O O -100
+[CLS] 185 ##c ##m ##의 장신 ##과 긴 머리 ##가 트레이드 마크 ##인 단정 한 얼굴 생김새 ##를 한 꽃 ##미 ##남 ##이다 . [SEP]	-100 SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O O O O O O O O O O O O O O O O -100
+[CLS] ㅇ ##와 , , , 키 ##가 183 ##이 ##네 ##욤 근데 얼굴 ##크 ##기 때문 ##인지 [SEP]	-100 O O O O O O O SS_LENGTH-B O O O O O O O O O -100
+[CLS] 난 160 ##c ##m ##은 넘 ##지 ##ㅎ ##ㅅ ##ㅎ [SEP]	-100 O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O O -100
+[CLS] 신체 : 158 ##c ##m [SEP]	-100 O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I -100
+[CLS] 나 작년 ##에 살 ##쪄 ##서 1 ##센 ##티 큰 ##줄 알 ##았 ##는데 올해 ##도 168 ##이 나오 ##네 . . . . [SEP]	-100 O O O O O O O O O O O O O O O O SS_LENGTH-B O O O O O O O -100
+[CLS] 촨 ##나 키 180 ##설 [SEP]	-100 SS_NAME-B SS_NAME-I O SS_LENGTH-B O -100
+[CLS] 여 ##잔 ##데 키 ##도 크 ##고 ( 179 ##센 ##티 ) 골격 ##근 ##량 ##도 ( 33 ##키 ##로 ) [SEP]	-100 O O O O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O -100
+[CLS] 영어 ##학 ##원 ##쌤 190 ##은 되 ##는 ##듯 ( 여자 ##임 . . ) [SEP]	-100 O O O O SS_LENGTH-B O O O O O O O O O O -100
+[CLS] 177 / 59 [SEP]	-100 SS_LENGTH-B O SS_WEIGHT-B -100
+[CLS] 172 센티 ##인 제 ##희 ##는 슬프 ##기 ##만 ##하 ##다 [SEP]	-100 SS_LENGTH-B SS_LENGTH-I O O O O O O O O O -100
+[CLS] 키 137 ##c ##m [SEP]	-100 O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I -100
+[CLS] 카메론 디아 ##즈 프로필 출생 : 1972 ##년 8 ##월 30 ##일 , 미국 신체 : 174 ##c ##m , 53 ##k ##g [SEP]	-100 SS_NAME-B SS_NAME-I SS_NAME-I O O O SS_BIRTH-B SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I -100
+[CLS] 11 ##개 ##월 우리 ##아 ##기 발달 ##은 결과 ##는 . . . . . . . . 키 74 . 4 몸무게 10 ##k ##g [SEP]	-100 SS_AGE-B SS_AGE-I SS_AGE-I O O O O O O O O O O O O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I -100
+[CLS] 임시 ##완 173 ##c ##m ##라고 하 ##던 ##데 [SEP]	-100 SS_NAME-B SS_NAME-I SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O -100
+[CLS] 153 ##c ##m 104 ##k ##g ##인 사람 ##의 체형 ##입니다 . [SEP]	-100 SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O -100
+[CLS] 179 ##면 ##서 자꾸 작 ##다 [SEP]	-100 SS_LENGTH-B O O O O O -100
+[CLS] 184 ##남 만나 ##로 ##간 ##당 키 ##큰 ##남 ##자 좋 ##아 [SEP]	-100 SS_LENGTH-B O O O O O O O O O O O -100
+[CLS] 제 ##가 166 ##c ##m ##인 ##데 , [SEP]	-100 O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O -100
+[CLS] "" 이에 남편 최우 ##성 ##은 "" "" 169 ##c ##m ##에 55 ##k ##g ##면 진짜 날씬 ##한 것 "" "" 이라 ##고 위로 ##했 ##으며 "" [SEP]	-100 O O O SS_NAME-B SS_NAME-I O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O O O O -100
+[CLS] 모 ##현 ##우 180 ##c ##m ##이 ##라 ##서 이건 . . 이미 되 ##고 ##도 ##남 ##음 [SEP]	-100 SS_NAME-B SS_NAME-I SS_NAME-I SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O O O O O O O O -100
+[CLS] 스칼렛 요한 ##슨 프로필 출생 : 1984 ##년 11 ##월 22 ##일 , 미국 신체 : 160 ##c ##m , 57 ##k ##g [SEP]	-100 SS_NAME-B SS_NAME-I SS_NAME-I O O O SS_BIRTH-B SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I -100
+[CLS] 오빠 172 ##랬 ##나 ? [SEP]	-100 O SS_LENGTH-B O O O -100
+[CLS] 키 163 ##c ##m ##에 몸무게 65 ##k ##g ##인 ' 통통 ##녀 ' 가 알려 ##주 ##는 뱃살 싹 가리 ##며 [SEP]	-100 O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O O O O -100
+[CLS] 키 179 ##에 ##오 [SEP]	-100 O SS_LENGTH-B O O -100
+[CLS] 국내 공식 프로필 ##에 따르 ##면 그 ##의 신장 ##은 179 ##c ##m ##가 아닌 176 ##c ##m [SEP]	-100 O O O O O O O O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I -100
+[CLS] 전현 ##무 씨 ##의 키는 173 ##c ##m ##에 몸무게 ##는 68 ##k ##g 다 . [SEP]	-100 SS_NAME-B SS_NAME-I O O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O -100
+[CLS] 박지성 178 ##센 ##티 ##라 저기 ##안 ##에 들어가 ##요 [SEP]	-100 SS_NAME-B SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O O -100
+[CLS] 175 ##c ##m ##는 생각 ##보 ##다 큰 키 ##야 [SEP]	-100 SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O O O -100
+[CLS] 몸무게 ##는 120 ##k ##g , 키는 183 ##c ##m ##다 . [SEP]	-100 O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O -100
+[CLS] 193 ##센 ##치 [SEP]	-100 SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I -100
+[CLS] 마 ##창 ##진 ##은 167 ##c ##m ##의 키 ##에 몸무게 ##는 56 ##k ##g ##로 왜 ##소 ##한 체격 ##이 ##며 , 팔자 ##걸음 ##이 특징 ##이다 . [SEP]	-100 SS_NAME-B SS_NAME-I SS_NAME-I O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O O O O O -100
+[CLS] 168 ##언 ##니 ##가 찍 ##어 ##준 155 날씨 ##가 다 ##했 ##던 날 [SEP]	-100 SS_LENGTH-B O O O O O O SS_LENGTH-B O O O O O O -100
+[CLS] 코코 ##는 80 ##센 ##티 ##가 조금 넘 ##는 , 이제 16 ##개 ##월 아기 ##구요 [SEP]	-100 O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O O O O SS_AGE-B SS_AGE-I SS_AGE-I O O -100
+[CLS] 166 ##센 ##치 ##다 이제 [SEP]	-100 SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O -100
+[CLS] 나 몇 ##이지 180 64 ##였 ##나 . . . [SEP]	-100 O O O SS_LENGTH-B SS_WEIGHT-B O O O O O -100
+[CLS] 158 ##이 ##잔 ##어 성 ##미야 190 ##이 ##면 32 ##c ##m 차이 [SEP]	-100 SS_LENGTH-B O O O SS_NAME-B SS_NAME-I SS_LENGTH-B O O O O O O -100
+[CLS] 키 ##가 162 ##c ##m ##라는 조 ##유리 , 당당히 ' 몸무게 ' 깠 ##다 [SEP]	-100 O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O SS_NAME-B SS_NAME-I O O O O O O O -100
+[CLS] 키 179 신발 ##은 디 ##매 ##에 ##서 불 ##호 판정 받 ##은 [SEP]	-100 O SS_LENGTH-B O O O O O O O O O O O -100
+[CLS] 김준 ##휘 ( 180 ##c ##m ) [SEP]	-100 SS_NAME-B SS_NAME-I O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O -100
+[CLS] 그치 ##만 나 ##는 163 ##인 ##걸 좀 ##만 더 크 ##지 [SEP]	-100 O O O O SS_LENGTH-B O O O O O O O -100
+[CLS] 키 181 기준 ##으로 ##요 [SEP]	-100 O SS_LENGTH-B O O O -100
+[CLS] 오늘 에 ##맥 ##신 ##어 ##서 183 > _ < [SEP]	-100 O O O O O O SS_LENGTH-B O O O -100
+[CLS] 178 / 56 ##인 ##데 그럼 . . . . . . . 그렇 ##다고 제 ##가 느껴 ##지 ##는 ##게 아 갈수록 살 빠지 ##는 ##구나 . . . 라는 느낌 ##이 드 ##는 ##것 ##도 아니 ##고 먹 ##을 ##때 ##도 좀 먹 ##는데 . . [SEP]	-100 SS_LENGTH-B O SS_WEIGHT-B O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O -100
+[CLS] 난 178 / 77 ##키 ##로 [SEP]	-100 O SS_LENGTH-B O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I -100
+[CLS] 키 180 아이 ##큐 100 [SEP]	-100 O SS_LENGTH-B O O O -100
+[CLS] 이사 ##람 ##이 키 ##가 193 ##이 ##거 ##든 ##요 ? ? ? ? [SEP]	-100 O O O O O SS_LENGTH-B O O O O O O O O -100

@@ -2,12 +2,25 @@ import os
 import argparse
 from copy import deepcopy
 from datetime import datetime
+from transformers import *
+import torch
 
 from trainer_online import Trainer_online
 
-from utils_main import init_logger, set_seed, MODEL_CLASSES, MODEL_PATH_MAP
+from utils_main import init_logger, set_seed, get_labels, MODEL_CLASSES, MODEL_PATH_MAP
 
 from data_loader import load_and_cache_examples
+
+def load_onlinemodel(args, config_class, model_class, label_lst):
+    config = config_class.from_pretrained(args.model_name_or_path,
+                                                num_labels=len(label_lst),
+                                                finetuning_task=args.task,
+                                                id2label={str(i): label for i, label in enumerate(label_lst)},
+                                                label2id={label: i for i, label in enumerate(label_lst)})
+    model = model_class.from_pretrained(args.model_name_or_path, config=config)
+    chkpt = torch.load(os.path.join(args.finetune_dir, args.finetune_actor))
+    model.load_state_dict(chkpt, strict = False)
+    return model
 
 
 def main(args):
@@ -16,9 +29,12 @@ def main(args):
 
     config_class, model_class, token_class = MODEL_CLASSES[args.model_type]
     tokenizer = token_class.from_pretrained(args.model_name_or_path)
-
-    model_config = config_class.from_pretrained(os.path.join(args.finetune_dir, args.finetune_config))
-    actor = model_class.from_pretrained(os.path.join(args.finetune_dir, args.finetune_actor), config=model_config)
+    label_lst = get_labels(args)
+    if args.online:
+        actor = load_onlinemodel(args, config_class, model_class, label_lst)
+    else:
+        model_config = config_class.from_pretrained(os.path.join(args.finetune_dir, args.finetune_config))
+        actor = model_class.from_pretrained(os.path.join(args.finetune_dir, args.finetune_actor), config=model_config)
     initial_model = deepcopy(actor)
 
     
@@ -38,7 +54,7 @@ def main(args):
         test_dataset = None
     
     ## train!
-    trainer = Trainer_online(args, train_dataset, test_dataset, actor, initial_model)
+    trainer = Trainer_online(args, train_dataset, test_dataset, actor, initial_model, label_lst)
     trainer.train()
 
     ## eval
@@ -51,7 +67,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--data_dir", default="./data", type=str, help="The input data dir")
     parser.add_argument('--output_dir', type=str, default='./output')
-    parser.add_argument('--model_dir', default='/model_chpt', help='save model checkpoint')
+    # parser.add_argument('--model_dir', default='/model_chkpt', help='save model checkpoint')
     parser.add_argument('--seed', type=int, default=42, help="random seed for initialization")
 
     parser.add_argument('--pretrain', type=str, default=False)
@@ -72,19 +88,19 @@ if __name__ == '__main__':
     parser.add_argument("--write_pred", default=True, action="store_true", help="Write prediction during evaluation")
 
     parser.add_argument('--model_type', type=str, default='koelectra-base')
-    parser.add_argument('--finetune_dir', type=str, default='./model_0418/')
+    parser.add_argument('--finetune_dir', type=str, default='./model/')
     parser.add_argument('--finetune_actor', type=str, default='pytorch_model.bin')
     parser.add_argument('--finetune_config', type=str, default='config.json')
     parser.add_argument("--task", default="naver-ner", type=str, help="The name of the task to train")
     
     parser.add_argument("--do_eval", default = True, action="store_true", help="Whether to run eval on the test set.")
-    parser.add_argument("--train_file", default="train.tsv", type=str, help="Train file")
+    parser.add_argument("--train_file", default="new_fine.tsv", type=str, help="Train file")
     parser.add_argument("--test_file", default="test.tsv", type=str, help="Test file")
     parser.add_argument("--label_file", default="label.txt", type=str, help="Slot Label file")
 
     parser.add_argument("--loss", default='online', choices=['base', 'online'], help="Loss selection")
-    parser.add_argument("--online", default=False, help ='whether online learning or not')
-    parser.add_argument("--beta", default=0.03, help ='kl loss hyper parameter') # 0.03
+    parser.add_argument("--online", default=True, help ='whether online learning or not')
+    parser.add_argument("--beta", default=0.05, help ='kl loss hyper parameter') # 0.03
 
     args = parser.parse_args(args=[])
     # args = parser.parse_args()
