@@ -55,8 +55,9 @@ def get_labels(args):
     return [label.strip() for label in open(os.path.join('data', 'label.txt'), 'r', encoding='utf-8')]
 
 
-def init_logger():
-    logging.basicConfig(format='%(asctime)s - %(levelname)s - %(name)s -   %(message)s',
+def init_logger(args):
+    logging.basicConfig(filename=os.path.join(args.output_dir, 'eval_log.txt'), 
+                        format='%(asctime)s - %(levelname)s - %(name)s -   %(message)s',
                         datefmt='%m/%d/%Y %H:%M:%S',
                         level=logging.INFO)
 

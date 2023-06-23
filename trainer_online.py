@@ -3,19 +3,20 @@ import numpy as np
 from tqdm import tqdm, trange
 import logging
 
-from torch.optim import Adam
+from torch.optim import Adam, SGD
 from transformers import AdamW, get_linear_schedule_with_warmup
 from torch.utils.data import DataLoader
 import torch
 import torch.nn as nn
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 from utils_main import compute_metrics, show_report, get_test_texts, custom_loss
+from EWC_moskomule.ewc import EWC
 
 logger = logging.getLogger(__name__)
 
 class Trainer_online():
-    def __init__(self, args, train_dataset, test_dataset, actor, initial_model, label_lst):
+    def __init__(self, args, train_dataset, replay_dataset, test_dataset, actor, initial_model, label_lst, device):
         self.args = args
         self.train_data = train_dataset
         self.test_data = test_dataset
@@ -23,7 +24,6 @@ class Trainer_online():
         self.pad_token_label_id = nn.CrossEntropyLoss().ignore_index
 
         self.model = actor
-        self.initial_model = initial_model
 
         self.dataloader = DataLoader(self.train_data, shuffle = True, batch_size = args.batch_size)
 
@@ -33,21 +33,30 @@ class Trainer_online():
         else:
             t_total = len(self.dataloader) // args.gradient_accumulation_steps * args.epochs
 
-
+        # self.optimizer = SGD(self.model.parameters(), lr=self.args.learning_rate)
         self.optimizer = Adam(actor.parameters(), lr=self.args.learning_rate, eps=self.args.adam_epsilon)
         # self.optimizer = AdamW(actor.parameters(), lr=args.learning_rate, eps=args.adam_epsilon)
-        # self.scheduler = get_linear_schedule_with_warmup(self.optimizer, num_warmup_steps=args.warmup_steps, num_training_steps=t_total)
-        self.scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(self.optimizer, T_0=10, T_mult=1, eta_min=0.00001)
 
-        self.device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+        self.scheduler = get_linear_schedule_with_warmup(self.optimizer, num_warmup_steps=args.warmup_steps, num_training_steps=t_total)
+        # self.scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(self.optimizer, T_0=10, T_mult=1, eta_min=0.00001)
+            
+
+        self.device = device
         self.model.to(self.device)
-        self.initial_model.to(self.device)
+
+        if self.args.loss != 'ewc':
+            self.initial_model = initial_model
+            self.initial_model.to(self.device)
 
         self.test_texts = None
         if args.write_pred:
             self.test_texts = get_test_texts(args)
 
         self.lrs = []
+
+        if self.args.loss == 'ewc':
+            self.importance = 1000 # ?
+            self.replay = DataLoader(replay_dataset, shuffle = True, batch_size = 16)
 
     def train_step(self, batch, step):
         batch = tuple(t.to(self.device) for t in batch)  # GPU or CPU
@@ -70,6 +79,10 @@ class Trainer_online():
                                 base_outputs[1],
                                 inputs['attention_mask'])
             
+        elif self.args.loss == 'ewc':
+            ewc = EWC(self.model, self.replay, self.device)
+            loss = outputs[0] + self.importance * ewc.penalty(self.model)
+
         if self.args.gradient_accumulation_steps > 1:
             loss = loss / self.args.gradient_accumulation_steps
 
@@ -88,39 +101,37 @@ class Trainer_online():
     def train(self):
         self.model.train()
         self.model.to(self.device)
-        
-        if not self.args.online:
-            tr_loss = 0
-            global_step = 0
 
-            for epoch in trange(self.args.epochs, desc='Epoch'):
-                for step, batch in enumerate(self.dataloader):
-                    loss = self.train_step(batch, step)
-                    tr_loss += loss.item()
-                    global_step += 1
-                    
-                    # if self.args.do_eval and global_step % self.args.logging_steps == 0:
-                    #     assert self.test_data != None, "Test Data Not Found"
-                self.eval(global_step)
+        self.eval(1, 0)
 
-                    # if global_step % self.args.save_steps == 0:
-            self.save_model()
-                        # torch.save(self.model.state_dict(),  os.path.join(self.args.output_dir, 'actor.pt'))
-                        # torch.save(self.optimizer.state_dict(), os.path.join(self.args.output_dir, 'actor_optim_checkpoint_%d.pt' % (torch.cuda.current_device())))
+        tr_loss = 0
+        global_step = 0
+        for epoch in trange(self.args.epochs, desc='Epoch'):
+            for step, batch in enumerate(self.dataloader):
+                loss = self.train_step(batch, step)
+    
+                tr_loss += loss.item()
+                global_step += 1
 
-            # plt.plot(self.lrs) # 왠지 모를 에러 때문에 포기 (그냥 list 로 봣다)
-            # plt.xlabel('epochs')
-            # plt.ylabel('learning rate')
-            # plt.title('Learning rate scheduling')
-            # plt.show()
-        
-        else:
-            pass
+        # if self.args.do_eval and global_step % self.args.logging_steps == 0:
+                #     assert self.test_data != None, "Test Data Not Found"
+            self.eval(global_step, epoch)
+
+                # if global_step % self.args.save_steps == 0:
+        self.save_model()
+                    # torch.save(self.model.state_dict(),  os.path.join(self.args.output_dir, 'actor.pt'))
+                    # torch.save(self.optimizer.state_dict(), os.path.join(self.args.output_dir, 'actor_optim_checkpoint_%d.pt' % (torch.cuda.current_device())))
+
+        plt.plot(self.lrs)
+        plt.xlabel('epochs')
+        plt.ylabel('learning rate')
+        plt.title('Learning rate scheduling')
+        plt.show()
 
         return tr_loss / global_step, global_step
 
     
-    def eval(self, step):
+    def eval(self, step, epoch):
         dataloader = DataLoader(self.test_data, shuffle = False, batch_size = self.args.batch_size)
         eval_loss = 0
         nb_eval_steps = 0
@@ -181,6 +192,8 @@ class Trainer_online():
         results.update(result)
 
         logger.info("***** Eval results *****")
+        logger.info("[Epoch %d step %d]", epoch, step)
+
         for key in sorted(results.keys()):
             logger.info("  %s = %s", key, str(results[key]))
         logger.info("\n" + show_report(out_label_list, preds_list))  # Get the report for each tag result

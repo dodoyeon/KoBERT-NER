@@ -1,0 +1,50 @@
+[CLS] 28 ##세 애 ##늙 ##은이 정 ##소 ##민 ##을 위한 [UNK] 취향 ##저 ##격 감사 ##합니다 ##🙏 ##🏻 [SEP]	-100 SS_AGE-B SS_AGE-I O O O SS_NAME-B SS_NAME-I SS_NAME-I O O O O O O O O O O -100
+[CLS] ㅜㅜ 93 ##년 ##생 닭 ##띠 ##들 조심 ##하 ##래 [SEP]	-100 O SS_AGE-B SS_AGE-I SS_AGE-I O O O O O O -100
+[CLS] 44 ##살 ##에 예정 ##에 없 ##던 늦 ##둥이 ##를 임신 ##하 ##게 된 여성 ##의 이야기 ##에 대한 애비 여사 ##의 답변 ##은 아래 링크 사이트 ##에 ##서 보 ##실 수 있 ##습 ##니다 . [SEP]	-100 SS_AGE-B SS_AGE-I O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O -100
+[CLS] 롯데 ##쇼 ##핑 명 ##정 ##남 ##입니다 . [SEP]	-100 SS_BRAND-B SS_BRAND-I SS_BRAND-I SS_NAME-B SS_NAME-I SS_NAME-I O O -100
+[CLS] 곽 ##지 ##한 ##이 ##었 ##습 ##니다 . [SEP]	-100 SS_NAME-B SS_NAME-I SS_NAME-I O O O O O -100
+[CLS] 320 ##동 ##41 ##93 ##호 ##입니다 . [SEP]	-100 AD_DETAIL-B AD_DETAIL-I AD_DETAIL-I AD_DETAIL-I AD_DETAIL-I O O -100
+[CLS] 와 23 ##살이 ##다 [SEP]	-100 O SS_AGE-B SS_AGE-I O -100
+[CLS] 1990 ##년 ##0 ##8 ##월 ##16 ##일 ##입니다 [SEP]	-100 SS_BIRTH-B SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I O -100
+[CLS] 계약자 ##님 주민 ##등 ##록 ##번 ##호 뒷 ##자리 7 ##자리 어떻게 되 ##시 ##죠 ? [SEP]	-100 O O O O O O O O O O O O O O O O -100
+[CLS] 189 ##번 ##지 산호 ##아 ##파 ##트 6 ##층 60 ##2 ##호 ##입니다 . [SEP]	-100 AD_ADDRESS-B AD_ADDRESS-I AD_ADDRESS-I AD_BRAND-B AD_BRAND-I AD_BRAND-I AD_BRAND-I AD_DETAIL-B AD_DETAIL-I AD_DETAIL-I AD_DETAIL-I AD_DETAIL-I O O -100
+[CLS] 작가 ##님 ##들이 안 ##계 ##셔 ##서 160 ##이 된 [UNK] [SEP]	-100 O O O O O O O SS_LENGTH-B O O O -100
+[CLS] 의정부 ##시 북구 상 ##모 ##동 다음 ##주 ##소 ##가 어떻게 ##되 ##십니까 ? [SEP]	-100 AD_CITY-B AD_CITY-I AD_CITY-I AD_ADDRESS-B AD_ADDRESS-I AD_ADDRESS-I O O O O O O O O -100
+[CLS] 부산 은행 ##이 ##요 . [SEP]	-100 SS_BRAND-B SS_BRAND-I O O O -100
+[CLS] 여행 내내 나와 함께 방 ##을 썼 ##던 22 ##살 민정 ##이 . [SEP]	-100 O O O O O O O O SS_AGE-B SS_AGE-I SS_NAME-B O O -100
+[CLS] 13 ##세 이상 15 ##세 이하 ##까 ##지만 이용 ##가 ##능 ##하 ##다는 ~ [SEP]	-100 O O O O O O O O O O O O O O -100
+[CLS] 네 , 국민 은행 ##이 ##요 . [SEP]	-100 O O SS_BRAND-B SS_BRAND-I O O O -100
+[CLS] 얘 158 ##에 45 ##래 . . [SEP]	-100 O SS_LENGTH-B O SS_WEIGHT-B O O O -100
+[CLS] 세 ##살 ##인 언니 ##도 요 ##만 ##한 아기 ##가 신기 ##한 ##지 자꾸 다 ##온 ##이 ##에 ##게 장난감 ##을 구경 ##시 ##켜 ##줬 ##다 . [SEP]	-100 SS_AGE-B SS_AGE-I O O O O O O O O O O O O SS_NAME-B SS_NAME-I O O O O O O O O O O O -100
+[CLS] 아이파크 ##아 ##파 ##트 184 ##동 ##75 ##82 ##호 ##입니다 . [SEP]	-100 AD_BRAND-B AD_BRAND-I AD_BRAND-I AD_BRAND-I AD_DETAIL-B AD_DETAIL-I AD_DETAIL-I AD_DETAIL-I AD_DETAIL-I O O -100
+[CLS] 고객 ##센터 번호 ##가 뭐 ##예 ##요 ? [SEP]	-100 O O O O O O O O -100
+[CLS] 부산 ##광역 ##시 해운대 ##구 중동 177 ##6 - 1 ##번 ##지 해운대 ##로 ##데 ##오 ##아 ##울 ##렛 A ##동 3 ##층 [SEP]	-100 AD_METRO-B AD_METRO-I AD_METRO-I AD_CITY-B AD_CITY-I AD_ADDRESS-B AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_BRAND-B AD_BRAND-I AD_BRAND-I AD_BRAND-I AD_BRAND-I AD_BRAND-I AD_BRAND-I AD_DETAIL-B AD_DETAIL-I AD_DETAIL-I AD_DETAIL-I -100
+[CLS] 주소 ##는 영주 ##시 연제 ##구 충 ##인 ##1 ##로 131 ##0 - 1 ##번 ##지 ##입니다 . [SEP]	-100 O O AD_CITY-B AD_CITY-I AD_CITY-I AD_CITY-I AD_ADDRESS-B AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I O O -100
+[CLS] 주말 ##지 ##나 ##고 58 ##k ##g ##으로 돌아가 ##면 안 ##되 ##니까 그러 ##는 ##거 ##다 [SEP]	-100 O O O O SS_WEIGHT-B SS_WEIGHT-I SS_WEIGHT-I O O O O O O O O O O -100
+[CLS] 제주 ##은행 ##이 ##죠 [SEP]	-100 SS_BRAND-B SS_BRAND-I O O -100
+[CLS] 인수 ##자 ##분 ##은 신승 ##비 ##고 ##객 ##님 본인 맞 ##습 ##니까 ? [SEP]	-100 O O O O SS_NAME-B SS_NAME-I O O O O O O O O -100
+[CLS] 이병 ##운 ##이 ##요 . [SEP]	-100 SS_NAME-B SS_NAME-I O O O -100
+[CLS] 1990 ##년 01 ##월 31 ##입니다 [SEP]	-100 SS_BIRTH-B SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I O -100
+[CLS] 남궁 ##소 ##은 800 ##81 ##8 입니다 . [SEP]	-100 SS_NAME-B SS_NAME-I SS_NAME-I SS_BIRTH-B SS_BIRTH-I SS_BIRTH-I O O -100
+[CLS] 상대방 계좌 ##의 계좌 ##번 ##호 ##가 어떻게 되 ##는지 말씀 ##해 주실 수 있 ##으 ##신 ##지 ##요 ? [SEP]	-100 O O O O O O O O O O O O O O O O O O O O -100
+[CLS] 박유 ##하 , 01 ##9 207 53 ##22 ##요 . [SEP]	-100 SS_NAME-B SS_NAME-I O ID_PHONE-B ID_PHONE-I ID_PHONE-I ID_PHONE-I ID_PHONE-I O O -100
+[CLS] 한국 ##스 ##탠 ##다드 ##차 ##타 ##드 ##은행 보안 ##카드 잃어버렸 ##습 ##니다 . [SEP]	-100 SS_BRAND-B SS_BRAND-I SS_BRAND-I SS_BRAND-I SS_BRAND-I SS_BRAND-I SS_BRAND-I SS_BRAND-I O O O O O O -100
+[CLS] 풍 ##진 ##태 ##에 010 - 64 ##61 - 66 ##86 ##번 입니다 . [SEP]	-100 SS_NAME-B SS_NAME-I SS_NAME-I O ID_PHONE-B ID_PHONE-I ID_PHONE-I ID_PHONE-I ID_PHONE-I ID_PHONE-I ID_PHONE-I O O O -100
+[CLS] 그 상대 ##는 한류 스타 ##의 노 ##민 ##우 ( 34 세 ) . [SEP]	-100 O O O O O O SS_NAME-B SS_NAME-I SS_NAME-I O SS_AGE-B SS_AGE-B O O -100
+[CLS] 고객 ##님 성 ##함 ##과 생년 ##월일 ##은 어떻게 되 ##실 ##까요 ? [SEP]	-100 O O O O O O O O O O O O O -100
+[CLS] 다음 질문 입니다 . [SEP]	-100 O O O O -100
+[CLS] 경상남도 통영 ##시 무전 ##대로 18 아빠 ##곰 ##양 ##식 ##당 [SEP]	-100 AD_METRO-B AD_CITY-B AD_CITY-I AD_ADDRESS-B AD_ADDRESS-I AD_ADDRESS-I AD_BRAND-B AD_BRAND-I AD_BRAND-I AD_BRAND-I AD_BRAND-I -100
+[CLS] 케이 ##비 카드 00 ##34 04 ##0 ##1 224 ##2 221 ##3 맞 ##습 ##니까 ? [SEP]	-100 SS_BRAND-B SS_BRAND-I SS_BRAND-I O O O O O O O O O O O O O -100
+[CLS] 네 , 304 ##4 04 ##21 410 ##0 100 ##3 ##이 ##구요 . [SEP]	-100 O O O O O O O O O O O O O -100
+[CLS] 우리 ##은행 ##입니다 . [SEP]	-100 SS_BRAND-B SS_BRAND-I O O -100
+[CLS] 너무 귀여운 중앙 ##대 곧 3 ##학 ##년 조연 ##아 ( 22 ) [SEP]	-100 O O SS_BRAND-B SS_BRAND-I O O O O SS_NAME-B SS_NAME-I O SS_AGE-B O -100
+[CLS] 한 ##번 찾아보 ##고 ##요 . [SEP]	-100 O O O O O O -100
+[CLS] 171 ##에 55 개 ##말라 ##남 ##이 되 ##고 ##싶 ##어 [SEP]	-100 SS_LENGTH-B O SS_WEIGHT-B O O O O O O O O -100
+[CLS] 2002 ##0 ##9 ##입니다 . [SEP]	-100 SS_BIRTH-B SS_BIRTH-I SS_BIRTH-I O O -100
+[CLS] 이분 ##이 164 ##센 ##치 ##라 ##네 ##여 [SEP]	-100 O O SS_LENGTH-B SS_LENGTH-I SS_LENGTH-I O O O -100
+[CLS] 이지 ##연 ##입니다 . [SEP]	-100 SS_BRAND-B SS_BRAND-I O O -100
+[CLS] 입장권 문의 ##는 159 ##9 - 75 ##72 [SEP]	-100 O O O ID_PHONE-B ID_PHONE-I ID_PHONE-I ID_PHONE-I ID_PHONE-I -100
+[CLS] 무엇 ##을 도와 ##드 ##릴 ##까요 고객 ##님 ? [SEP]	-100 O O O O O O O O O -100
+[CLS] 경기 의왕시 길 ##안 ##면 대사 ##리 ##요 . [SEP]	-100 AD_METRO-B AD_CITY-B AD_ADDRESS-B AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I AD_ADDRESS-I O O -100
+[CLS] 640 ##20 ##9 - 47 ##79 ##26 ##2 ##이 ##에 ##요 . [SEP]	-100 SS_BIRTH-B SS_BIRTH-I SS_BIRTH-I O O O O O O O O O -100
+[CLS] 김선 ##혜 64 ##년 05 ##월 17 ##일 입니다 . [SEP]	-100 SS_NAME-B SS_NAME-I SS_BIRTH-B SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I SS_BIRTH-I O O -100
